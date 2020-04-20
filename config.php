@@ -1,0 +1,3 @@
+<?php
+    define("GOOGLE_API_KEY", 'AAAAZTIuBwY:APA91bHrT2mQFdH8kpm1wD4NZzJip2hSqVqj9tdvFCzVA8cQ419Jz1Dc8cw7lZ_JUgQki3Evn2PEpJV51gRQnERfzSPf-jqJZMqjNUMst3oKHPrcP9Kd_NxnWJ1FwWAxqSYrT--prZfd');
+?>
