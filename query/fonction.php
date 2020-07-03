@@ -1832,6 +1832,24 @@
         }
     }
 
+    function getConducteurDisabled(){
+        include("connexion.php");
+        $con->set_charset("utf8");
+        $sql = "SELECT * FROM tj_conducteur WHERE statut='no'";
+        $result = mysqli_query($con,$sql);
+        // output data of each row
+        while($row = mysqli_fetch_assoc($result)) {
+            $output[] = $row;
+        }
+        
+        mysqli_close($con);
+        if(mysqli_num_rows($result) > 0){
+            return $output;
+        }else{
+            return $output = [];
+        }
+    }
+
     function getConducteurById($id_conducteur){
         include("connexion.php");
         $con->set_charset("utf8");
@@ -2674,16 +2692,16 @@
             }
         }
 
-        $sql_com = "SELECT value FROM tj_commission ORDER BY id DESC LIMIT 1";
-        $result_com = mysqli_query($con,$sql_com);
-        $row_com = mysqli_fetch_assoc($result_com);
-        $value = $row_com['value'];
-        // output data of each row
-        while($row_cu = mysqli_fetch_assoc($result_cu)) {
-            $cu = $row_cu['cu'];
-            $cu = $cu * $value;
-            $earning = $earning + $cu;
-        }
+        // $sql_com = "SELECT value FROM tj_commission ORDER BY id DESC LIMIT 1";
+        // $result_com = mysqli_query($con,$sql_com);
+        // $row_com = mysqli_fetch_assoc($result_com);
+        // $value = $row_com['value'];
+        // // output data of each row
+        // while($row_cu = mysqli_fetch_assoc($result_cu)) {
+        //     $cu = $row_cu['cu'];
+        //     $cu = $cu * $value;
+        //     $earning = $earning + $cu;
+        // }
 
         $sql = "SELECT sum(r.montant) as montant
         FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.id_user_app=u.id AND r.id_conducteur=c.id
@@ -2779,16 +2797,16 @@
             }
         }
 
-        $sql_com = "SELECT value FROM tj_commission ORDER BY id DESC LIMIT 1";
-        $result_com = mysqli_query($con,$sql_com);
-        $row_com = mysqli_fetch_assoc($result_com);
-        $value = $row_com['value'];
-        // output data of each row
-        while($row_cu = mysqli_fetch_assoc($result_cu)) {
-            $cu = $row_cu['cu'];
-            $cu = $cu * $value;
-            $earning = $earning + $cu;
-        }
+        // $sql_com = "SELECT value FROM tj_commission ORDER BY id DESC LIMIT 1";
+        // $result_com = mysqli_query($con,$sql_com);
+        // $row_com = mysqli_fetch_assoc($result_com);
+        // $value = $row_com['value'];
+        // // output data of each row
+        // while($row_cu = mysqli_fetch_assoc($result_cu)) {
+        //     $cu = $row_cu['cu'];
+        //     $cu = $cu * $value;
+        //     $earning = $earning + $cu;
+        // }
 
         $sql = "SELECT sum(r.montant) as montant
         FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.statut='new' AND r.id_user_app=u.id AND r.id_conducteur=c.id
@@ -2863,16 +2881,16 @@
             }
         }
 
-        $sql_com = "SELECT value FROM tj_commission ORDER BY id DESC LIMIT 1";
-        $result_com = mysqli_query($con,$sql_com);
-        $row_com = mysqli_fetch_assoc($result_com);
-        $value = $row_com['value'];
-        // output data of each row
-        while($row_cu = mysqli_fetch_assoc($result_cu)) {
-            $cu = $row_cu['cu'];
-            $cu = $cu * $value;
-            $earning = $earning + $cu;
-        }
+        // $sql_com = "SELECT value FROM tj_commission ORDER BY id DESC LIMIT 1";
+        // $result_com = mysqli_query($con,$sql_com);
+        // $row_com = mysqli_fetch_assoc($result_com);
+        // $value = $row_com['value'];
+        // // output data of each row
+        // while($row_cu = mysqli_fetch_assoc($result_cu)) {
+        //     $cu = $row_cu['cu'];
+        //     $cu = $cu * $value;
+        //     $earning = $earning + $cu;
+        // }
 
         $sql = "SELECT sum(r.montant) as montant
         FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.statut='confirmed' AND r.id_user_app=u.id AND r.id_conducteur=c.id
@@ -2947,16 +2965,16 @@
             }
         }
 
-        $sql_com = "SELECT value FROM tj_commission ORDER BY id DESC LIMIT 1";
-        $result_com = mysqli_query($con,$sql_com);
-        $row_com = mysqli_fetch_assoc($result_com);
-        $value = $row_com['value'];
-        // output data of each row
-        while($row_cu = mysqli_fetch_assoc($result_cu)) {
-            $cu = $row_cu['cu'];
-            $cu = $cu * $value;
-            $earning = $earning + $cu;
-        }
+        // $sql_com = "SELECT value FROM tj_commission ORDER BY id DESC LIMIT 1";
+        // $result_com = mysqli_query($con,$sql_com);
+        // $row_com = mysqli_fetch_assoc($result_com);
+        // $value = $row_com['value'];
+        // // output data of each row
+        // while($row_cu = mysqli_fetch_assoc($result_cu)) {
+        //     $cu = $row_cu['cu'];
+        //     $cu = $cu * $value;
+        //     $earning = $earning + $cu;
+        // }
 
         $sql = "SELECT sum(r.montant) as montant
         FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.statut='on ride' AND r.id_user_app=u.id AND r.id_conducteur=c.id
@@ -3031,16 +3049,16 @@
             }
         }
 
-        $sql_com = "SELECT value FROM tj_commission ORDER BY id DESC LIMIT 1";
-        $result_com = mysqli_query($con,$sql_com);
-        $row_com = mysqli_fetch_assoc($result_com);
-        $value = $row_com['value'];
-        // output data of each row
-        while($row_cu = mysqli_fetch_assoc($result_cu)) {
-            $cu = $row_cu['cu'];
-            $cu = $cu * $value;
-            $earning = $earning + $cu;
-        }
+        // $sql_com = "SELECT value FROM tj_commission ORDER BY id DESC LIMIT 1";
+        // $result_com = mysqli_query($con,$sql_com);
+        // $row_com = mysqli_fetch_assoc($result_com);
+        // $value = $row_com['value'];
+        // // output data of each row
+        // while($row_cu = mysqli_fetch_assoc($result_cu)) {
+        //     $cu = $row_cu['cu'];
+        //     $cu = $cu * $value;
+        //     $earning = $earning + $cu;
+        // }
         
         $sql = "SELECT sum(r.montant) as montant, montant as cu
         FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.statut='completed' AND r.id_user_app=u.id AND r.id_conducteur=c.id
@@ -3049,6 +3067,110 @@
         // output data of each row
         while($row = mysqli_fetch_assoc($result)) {
             $row['earning'] = $earning;
+            $output[] = $row;
+        }
+        
+        mysqli_close($con);
+        if(mysqli_num_rows($result) > 0){
+            return $output;
+        }else{
+            return $output = [];
+        }
+    }
+
+    function getCustomerStats($id_customer,$month,$year){
+        include("connexion.php");
+        $con->set_charset("utf8");
+
+        $time = strtotime($year.'-'.$month.'-01');
+        $date1 = date('Y-m-01 00:00:00',$time);
+        $date2 = date('Y-m-t 23:59:59',$time);
+
+        $sql = "SELECT r.id,r.distance,r.creer,r.modifier,r.id_user_app,r.statut,r.depart_name,r.destination_name,r.duree,r.montant,r.trajet,u.nom,u.prenom
+        ,c.nom as nomDriver,c.prenom as prenomDriver,r.statut_paiement,m.libelle as payment,m.image as payment_image,u.phone
+        FROM tj_requete r, tj_user_app u, tj_conducteur c, tj_payment_method m WHERE r.statut='completed' AND r.id_payment_method=m.id AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        AND u.id=$id_customer AND r.creer>='$date1' AND r.creer<='$date2' ORDER BY r.id DESC";
+        $result = mysqli_query($con,$sql);
+        // output data of each row
+        while($row = mysqli_fetch_assoc($result)) {
+            $output[] = $row;
+        }
+        
+        mysqli_close($con);
+        if(mysqli_num_rows($result) > 0){
+            return $output;
+        }else{
+            return $output = [];
+        }
+    }
+
+    function getDriverStats($id_driver,$month,$year){
+        include("connexion.php");
+        $con->set_charset("utf8");
+
+        $time = strtotime($year.'-'.$month.'-01');
+        $date1 = date('Y-m-01 00:00:00',$time);
+        $date2 = date('Y-m-t 23:59:59',$time);
+
+        $sql = "SELECT r.id,r.distance,r.creer,r.modifier,r.id_user_app,r.statut,r.depart_name,r.destination_name,r.duree,r.montant,r.trajet,u.nom,u.prenom
+        ,c.nom as nomDriver,c.prenom as prenomDriver,r.statut_paiement,m.libelle as payment,m.image as payment_image,u.phone
+        FROM tj_requete r, tj_user_app u, tj_conducteur c, tj_payment_method m WHERE r.statut='completed' AND r.id_payment_method=m.id AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        AND c.id=$id_driver AND r.creer>='$date1' AND r.creer<='$date2' ORDER BY r.id DESC";
+        $result = mysqli_query($con,$sql);
+        // output data of each row
+        while($row = mysqli_fetch_assoc($result)) {
+            $output[] = $row;
+        }
+        
+        mysqli_close($con);
+        if(mysqli_num_rows($result) > 0){
+            return $output;
+        }else{
+            return $output = [];
+        }
+    }
+
+    function getEarningStats($month,$year){
+        include("connexion.php");
+        $con->set_charset("utf8");
+
+        $time = strtotime($year.'-'.$month.'-01');
+        $date1 = date('Y-m-01 00:00:00',$time);
+        $date2 = date('Y-m-t 23:59:59',$time);
+
+        $sql = "SELECT r.id,r.distance,r.creer,r.modifier,r.id_user_app,r.statut,r.depart_name,r.destination_name,r.duree,r.montant,r.trajet,u.nom,u.prenom
+        ,c.nom as nomDriver,c.prenom as prenomDriver,r.statut_paiement,m.libelle as payment,m.image as payment_image,u.phone
+        FROM tj_requete r, tj_user_app u, tj_conducteur c, tj_payment_method m WHERE r.statut='completed' AND r.id_payment_method=m.id AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        AND r.creer>='$date1' AND r.creer<='$date2' ORDER BY r.id DESC";
+        $result = mysqli_query($con,$sql);
+        // output data of each row
+        while($row = mysqli_fetch_assoc($result)) {
+            $output[] = $row;
+        }
+        
+        mysqli_close($con);
+        if(mysqli_num_rows($result) > 0){
+            return $output;
+        }else{
+            return $output = [];
+        }
+    }
+
+    function getEarningStatsDashboard($year){
+        include("connexion.php");
+        $con->set_charset("utf8");
+
+        $time = strtotime($year.'-01-01');
+        $date1 = date('Y-01-01 00:00:00',$time);
+        $date2 = date('Y-12-t 23:59:59',$time);
+
+        $sql = "SELECT r.id,r.distance,r.creer,r.modifier,r.id_user_app,r.statut,r.depart_name,r.destination_name,r.duree,r.montant,r.trajet,u.nom,u.prenom
+        ,c.nom as nomDriver,c.prenom as prenomDriver,r.statut_paiement,m.libelle as payment,m.image as payment_image,u.phone
+        FROM tj_requete r, tj_user_app u, tj_conducteur c, tj_payment_method m WHERE r.statut='completed' AND r.id_payment_method=m.id AND r.id_user_app=u.id AND r.id_conducteur=c.id
+        AND r.creer>='$date1' AND r.creer<='$date2' ORDER BY r.id DESC";
+        $result = mysqli_query($con,$sql);
+        // output data of each row
+        while($row = mysqli_fetch_assoc($result)) {
             $output[] = $row;
         }
         
@@ -3136,16 +3258,16 @@
             }
         }
 
-        $sql_com = "SELECT value FROM tj_commission ORDER BY id DESC LIMIT 1";
-        $result_com = mysqli_query($con,$sql_com);
-        $row_com = mysqli_fetch_assoc($result_com);
-        $value = $row_com['value'];
-        // output data of each row
-        while($row_cu = mysqli_fetch_assoc($result_cu)) {
-            $cu = $row_cu['cu'];
-            $cu = $cu * $value;
-            $earning = $earning + $cu;
-        }
+        // $sql_com = "SELECT value FROM tj_commission ORDER BY id DESC LIMIT 1";
+        // $result_com = mysqli_query($con,$sql_com);
+        // $row_com = mysqli_fetch_assoc($result_com);
+        // $value = $row_com['value'];
+        // // output data of each row
+        // while($row_cu = mysqli_fetch_assoc($result_cu)) {
+        //     $cu = $row_cu['cu'];
+        //     $cu = $cu * $value;
+        //     $earning = $earning + $cu;
+        // }
 
         $sql = "SELECT sum(r.montant) as montant
         FROM tj_requete r, tj_user_app u, tj_conducteur c WHERE r.statut='canceled' AND r.id_user_app=u.id AND r.id_conducteur=c.id
@@ -3451,6 +3573,57 @@
         $result = mysqli_query($con,$sql);
         // output data of each row
         while($row = mysqli_fetch_assoc($result)) {
+            $cu = $row['montant'];
+            $earning = 0;
+
+            $sql_com = "SELECT value FROM tj_commission WHERE type='Percentage' AND statut='yes' ORDER BY id DESC LIMIT 1";
+            $result_com = mysqli_query($con,$sql_com);
+            if(mysqli_num_rows($result_com) > 0){
+                $row_com = mysqli_fetch_assoc($result_com);
+                $value = $row_com['value'];
+                $value = (float)($value);
+    
+                // output data of each row
+                $value_fixed = 0;
+                $sql_com_fixed = "SELECT value FROM tj_commission WHERE type='Fixed' AND statut='yes' ORDER BY id DESC LIMIT 1";
+                $result_com_fixed = mysqli_query($con,$sql_com_fixed);
+                if(mysqli_num_rows($result_com_fixed) > 0){
+                    $row_com_fixed = mysqli_fetch_assoc($result_com_fixed);
+                    $value_fixed = $row_com_fixed['value'];
+                }
+    
+                $cu = ($cu - $value_fixed) * $value;
+                $earning = (Float)$earning + ((Float)$cu + (Float)$value_fixed);
+            }else{
+                $sql_com = "SELECT value FROM tj_commission WHERE type='Fixed' AND statut='yes' ORDER BY id DESC LIMIT 1";
+                $result_com = mysqli_query($con,$sql_com);
+                if(mysqli_num_rows($result_com) > 0){
+                    $row_com = mysqli_fetch_assoc($result_com);
+    
+                    // output data of each row
+                    $value_fixed = 0;
+                    $sql_com_fixed = "SELECT value FROM tj_commission WHERE type='Fixed' AND statut='yes' ORDER BY id DESC LIMIT 1";
+                    $result_com_fixed = mysqli_query($con,$sql_com_fixed);
+                    $row_com_fixed = mysqli_fetch_assoc($result_com_fixed);
+                    if(mysqli_num_rows($result_com_fixed) > 0){
+                        $value_fixed = $row_com_fixed['value'];
+                    }
+    
+                    $earning = (Float)$earning + (Float)$value_fixed;
+                }else{
+    
+                }
+            }
+
+            // $sql_com = "SELECT value FROM tj_commission ORDER BY id DESC LIMIT 1";
+            // $result_com = mysqli_query($con,$sql_com);
+            // $row_com = mysqli_fetch_assoc($result_com);
+            // $value = $row_com['value'];
+            
+            // $cu = $cu * $value;
+            // $earning = $earning + $cu;
+            $row['earning'] = $earning;
+
             $output[] = $row;
         }
         

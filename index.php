@@ -31,6 +31,8 @@
     <link href="assets/plugins/toast-master/css/jquery.toast.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">
+    <!--This page css - Morris CSS -->
+    <link href="assets/plugins/morrisjs/morris.css" rel="stylesheet">
 
     
 	<style> 
@@ -361,6 +363,92 @@
                 </div>
                 <div class="row">
                     <!-- Column -->
+                    <div class="col-lg-12 col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title"><i class="mdi mdi-account m-r-5 color-success"></i>Driver activation request</h4>
+                                <div class="table-responsive m-t-10" style="height:160px;">
+                                    <?php
+                                        $tab_conducteur[] = array(); 
+                                        $tab_conducteur = getConducteurDisabled();
+                                    ?>
+                                    <table id="example24" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%" height="100%;">
+                                        <thead>
+                                            <tr>
+                                                <th width="5%">N°</th>
+                                                <th width="10%">Photo</th>
+                                                <th width="20%">Last name</th>
+                                                <th width="20%">First name</th>
+                                                <th width="10%">Phone</th>
+                                                <th width="10%">National card number</th>
+                                                <th width="5%">Status</th>
+                                                <th width="5%">Created</th>
+                                                <th width="5%">Modify</th>
+                                                <th width="10%">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                                for($i=0; $i<count($tab_conducteur); $i++){
+                                                    echo'
+                                                        <tr>
+                                                            <td>'.($i+1).'</td>
+                                                            <td>
+                                                                <div class="user-profile" style="width:100%;">
+                                                                    <div class="profile-img" style="width:100%;">';
+                                                                        if($tab_conducteur[$i]['photo_path'] == ""){
+                                                                            echo '<img src="on_demand_taxi_webservice/images/app_user/user_profile.jpg" alt="" width="100%" style="width:70px;height:70px;">';
+                                                                        }else{
+                                                                            echo '<img src="on_demand_taxi_webservice/images/app_user/'.$tab_conducteur[$i]['photo_path'].'" alt="" width="100%" style="width:70px;height:70px;">';
+                                                                        }
+                                                                        
+                                                                    echo '</div>
+                                                                </div>
+                                                            </td>
+                                                            <td>'.$tab_conducteur[$i]['nom'].'</td>
+                                                            <td>'.$tab_conducteur[$i]['prenom'].'</td>
+                                                            <td>'.$tab_conducteur[$i]['phone'].'</td>
+                                                            <td>'.$tab_conducteur[$i]['cnib'].'</td>
+                                                            <td><span class="'; if($tab_conducteur[$i]['statut'] == "yes"){echo "badge badge-success";}else{echo "badge badge-danger";} echo '">'.$tab_conducteur[$i]['statut'].'</span></td>
+                                                            <td>'.$tab_conducteur[$i]['creer'].'</td>
+                                                            <td>'.$tab_conducteur[$i]['modifier'].'</td>
+                                                            <td>
+                                                                <a href="query/action.php?id_conducteur_activer='.$tab_conducteur[$i]['id'].'" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <i class="fa fa-check"></i> </a>
+                                                                <a href="conducteur-detail.php?id_conducteur='.$tab_conducteur[$i]['id'].'" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="View détails"> <i class="fa fa-ellipsis-h"></i> </a>
+                                                            </td>
+                                                        </tr>
+                                                    ';
+                                                }
+                                            ?>
+                                            <!-- <input type="hidden" value="'.$tab_conducteur[$i]['id'].'" name="" id="id_conducteur_'.$i.'">
+                                            <button type="button" onclick="modConducteur(id_conducteur_'.$i.'.value);" class="btn btn-warning btn-sm" data-original-title="Modify" data-toggle="modal" data-target="#conducteur-mod"><i class="fa fa-pencil"></i></button>
+                                            <a href="query/action.php?id_conducteur='.$tab_conducteur[$i]['id'].'" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a>
+                                            <a href="query/action.php?id_conducteur_desactiver='.$tab_conducteur[$i]['id'].'" class="btn btn-inverse btn-sm" data-toggle="tooltip" data-original-title="Deactivate"> <i class="fa fa-close"></i> </a> -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <?php
+                                    $tab_currency[] = array(); 
+                                    $tab_currency = getEnabledCurrency();
+                                ?>
+                                <h4 class="card-title">Earning stats (<?php echo $tab_currency[0]['symbole']; ?>)</h4>
+                                <div id="chart">
+                                    <canvas id="chart2" height="150"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- column -->
+                    <!-- Column -->
                     <div class="col-lg-3 col-lg-5">
                         <div class="card">
                             <div class="card-body">
@@ -435,7 +523,7 @@
                             // } 
                         </script> 
                         <script async defer 
-                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9pYFPSnzYV-IkWHTe0PXciACAsVwJU0E&callback=initMap"> 
+                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCSSZ-Z6yskEq1L9NjH4_AUt6aUZQr_IE&callback=initMap"> 
                         </script> 
 
                     </div>
@@ -561,11 +649,21 @@
 
     <script src="assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
 
+    <!-- Chart JS -->
+    <script src="assets/plugins/Chart.js/chartjs.init.js"></script>
+    <script src="assets/plugins/Chart.js/Chart.min.js"></script>
+    <!-- ============================================================== -->
+
     
     <!--Custom JavaScript -->
     <!-- <script src="js/custom.min.js"></script> -->
     <script src="assets/plugins/toast-master/js/jquery.toast.js"></script>
     <script src="js/toastr.js"></script>
+    <!-- This is data table -->
+    <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script>
+        // $('#example24').DataTable();
+    </script>
 
     <script>
         initMap();
@@ -604,12 +702,7 @@
                                 icon: image, 
                                 title: nom_prenom 
                             }); 
-                            var infoWindow = new google.maps.InfoWindow();
-                            google.maps.event.addListener(marker, 'click', function () {
-                                var markerContent = "<h4>Name : "+prenom+" "+nom+"</h4> <h6>Phone : "+phone+"</h6>";
-                                infoWindow.setContent(markerContent);
-                                infoWindow.open(map, this);
-                            });
+                            showInfo(map,marker,phone);
                             // Push your newly created marker into the array:
                             gmarkers.push(marker);
                         }
@@ -622,6 +715,14 @@
                     }
                     addYourLocationButton(map, marker);
                 }
+            });
+        }
+        function showInfo(map,marker,phone){
+            var infoWindow = new google.maps.InfoWindow();
+            google.maps.event.addListener(marker, 'click', function () {
+                var markerContent = "<h4>Name : "+marker.getTitle()+"</h4> <h6>Phone : "+phone+"</h6>";
+                infoWindow.setContent(markerContent);
+                infoWindow.open(map, this);
             });
         }
         function addYourLocationButton(map, marker) {
@@ -714,12 +815,7 @@
                             icon: image, 
                             title: nom_prenom 
                         }); 
-                        var infoWindow = new google.maps.InfoWindow();
-                        google.maps.event.addListener(marker, 'click', function () {
-                            var markerContent = "<h4>Name : "+prenom+""+nom+"</h4> <h6>Phone : "+phone+"</h6>";
-                            infoWindow.setContent(markerContent);
-                            infoWindow.open(map, this);
-                        });
+                        showInfo(map,marker,phone);
                         // Push your newly created marker into the array:
                         gmarkers.push(marker);
                     }
@@ -738,6 +834,93 @@
         }
 
         setInterval(foo, 7000);
+
+        apply(new Date().getFullYear());
+        function apply(year){
+            $("#loader").css("display", "block");
+            $.ajax({
+                url: "query/ajax/getEarningStatsDashboard.php",
+                type: "POST",
+                data: {"year":year},
+                success: function (data) {
+                    $("#chart2").remove();
+                    $("#chart").append('<canvas id="chart2" height="50"></canvas>');
+
+                    var data_parse = JSON.parse(data);
+
+                    var ctx2 = document.getElementById("chart2").getContext("2d");
+                    var v01 = 0;var v02 = 0;var v03 = 0;var v04 = 0;var v05 = 0;var v06 = 0;var v07 = 0;var v08 = 0;var v09 = 0;var v10 = 0;var v11 = 0;var v12 = 0;
+                    for (let i = 0; i < data_parse.length; i++) {
+                        date = data_parse[i].creer;
+                        tab_tab = date.split('-');
+                        var expr = tab_tab[1];
+                        var nb = expr;
+                        switch(nb){
+                            case '01': v01 = parseInt(v01)+parseInt(data_parse[i].montant); break;
+                            case '02': v02 = parseInt(v02)+parseInt(data_parse[i].montant); break;
+                            case '03': v03 = parseInt(v03)+parseInt(data_parse[i].montant); break;
+                            case '04': v04 = parseInt(v04)+parseInt(data_parse[i].montant); break;
+                            case '05': v05 = parseInt(v05)+parseInt(data_parse[i].montant); break;
+                            case '06': v06 = parseInt(v06)+parseInt(data_parse[i].montant); break;
+                            case '07': v07 = parseInt(v07)+parseInt(data_parse[i].montant); break;
+                            case '08': v08 = parseInt(v08)+parseInt(data_parse[i].montant); break;
+                            case '09': v09 = parseInt(v09)+parseInt(data_parse[i].montant); break;
+                            case '10': v10 = parseInt(v10)+parseInt(data_parse[i].montant); break;
+                            case '11': v11 = parseInt(v11)+parseInt(data_parse[i].montant); break;
+                            default: v12 = parseInt(v12)+parseInt(data_parse[i].montant); break;
+                        }
+                    }
+
+                    var data_tab = [];
+                    for (let i = 0; i < 12; i++) {
+                        switch(i){
+                            case 0: data_tab[i] = v01; break;
+                            case 1: data_tab[i] = v02; break;
+                            case 2: data_tab[i] = v03; break;
+                            case 3: data_tab[i] = v04; break;
+                            case 4: data_tab[i] = v05; break;
+                            case 5: data_tab[i] = v06; break;
+                            case 6: data_tab[i] = v07; break;
+                            case 7: data_tab[i] = v08; break;
+                            case 8: data_tab[i] = v09; break;
+                            case 9: data_tab[i] = v10; break;
+                            case 10: data_tab[i] = v11; break;
+                            case 11: data_tab[i] = v12; break;
+                            case 12: data_tab[i] = v13; break;
+                            default: data_tab[i] = '0'; break;
+                        }
+                    }
+                    var data2 = {
+                        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                        datasets: [
+                            {
+                                label: "Earning stats",
+                                fillColor: "#ffb22b",
+                                strokeColor: "#ffb22b",
+                                highlightFill: "#eba327",
+                                highlightStroke: "#eba327",
+                                data: data_tab
+                            }
+                        ]
+                    };
+                    
+                    var chart2 = new Chart(ctx2).Bar(data2, {
+                        scaleBeginAtZero : true,
+                        scaleShowGridLines : true,
+                        scaleGridLineColor : "rgba(0,0,0,.005)",
+                        scaleGridLineWidth : 0,
+                        scaleShowHorizontalLines: true,
+                        scaleShowVerticalLines: true,
+                        barShowStroke : true,
+                        barStrokeWidth : 0,
+                        tooltipCornerRadius: 2,
+                        barDatasetSpacing : 3,
+                        legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
+                        responsive: true
+                    });
+                }
+            });
+        }
     </script>
     <!-- Custom Theme JavaScript -->
 

@@ -137,6 +137,7 @@
                                                 <th>Distance</th>
                                                 <th>Duration</th>
                                                 <th>Cost (<?php echo $tab_currency[0]['symbole'] ?>)</th>
+                                                <th>Earning (<?php echo $tab_currency[0]['symbole'] ?>)</th>
                                                 <!-- <th>Path</th> -->
                                                 <th>Status</th>
                                                 <!-- <th>Race status</th> -->
@@ -163,6 +164,7 @@
                                                             <td>'.$tab_requete[$i]['distance'].' m</td>
                                                             <td>'.$tab_requete[$i]['duree'].'</td>
                                                             <td>'.$tab_requete[$i]['montant'].'</td>
+                                                            <td>'.$tab_requete[$i]['earning'].'</td>
                                                             <td><span class="badge badge-warning">'.$tab_requete[$i]['statut'].'</span></td>
                                                             <td>'.$tab_requete[$i]['creer'].'</td>
                                                             <td>'.$tab_requete[$i]['modifier'].'</td>

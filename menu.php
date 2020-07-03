@@ -59,6 +59,17 @@
                 <!-- <li><a href="commentaire-avis.php">Commentaire & Avis</a></li> -->
             </ul>
         </li>
+        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                <i class="mdi mdi-chart-bar"></i>
+                <span class="hide-menu">Statistics</span>
+            </a>
+            <ul aria-expanded="false" class="collapse">
+                <li><a href="statistics-customer.php">Customer</a></li>
+                <li><a href="statistics-driver.php">Driver</a></li>
+                <li><a href="statistics-earning.php">Earning</a></li>
+                <!-- <li><a href="commentaire-avis.php">Commentaire & Avis</a></li> -->
+            </ul>
+        </li>
         <li class="nav-small-cap">PARAMETER OF MOBILE</li>
         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-settings-box"></i><span class="hide-menu">Codification</span></a>
             <ul aria-expanded="false" class="collapse">

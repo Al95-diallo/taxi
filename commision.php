@@ -148,7 +148,7 @@
                                                             <div class="col-md-4 m-b-0">
                                                                 <div class="form-group mb-3">
                                                                     <label class="mr-sm-2" for="designation">Value</label>
-                                                                    <input type="number" step="0.01" value="0.01" class="form-control " placeholder="" name="value_commission_perc" id="value_commission_perc" required> 
+                                                                    <input type="number" step="0.01" value="0.01" min="0.01" max="0.99" class="form-control " placeholder="" name="value_commission_perc" id="value_commission_perc" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
                                                                     </div>
@@ -200,7 +200,7 @@
                                                             <div class="col-md-4 m-b-0">
                                                                 <div class="form-group mb-3">
                                                                     <label class="mr-sm-2" for="designation">Value</label>
-                                                                    <input type="number" class="form-control" step="0.01" value="0.01" placeholder="" name="value_commission_mod_perc" id="value_commission_mod_perc" required> 
+                                                                    <input type="number" class="form-control" step="0.01" value="0.01" min="0.01" max="0.99" placeholder="" name="value_commission_mod_perc" id="value_commission_mod_perc" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
                                                                     </div>
@@ -304,7 +304,7 @@
                                                             <div class="col-md-4 m-b-0">
                                                                 <div class="form-group mb-3">
                                                                     <label class="mr-sm-2" for="designation">Value</label>
-                                                                    <input type="number" class="form-control " placeholder="" name="value_commission" id="value_commission" required> 
+                                                                    <input type="number" class="form-control " placeholder="" min="1" name="value_commission" id="value_commission" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
                                                                     </div>
@@ -356,7 +356,7 @@
                                                             <div class="col-md-4 m-b-0">
                                                                 <div class="form-group mb-3">
                                                                     <label class="mr-sm-2" for="designation">Value</label>
-                                                                    <input type="number" class="form-control" placeholder="" name="value_commission_mod" id="value_commission_mod" required> 
+                                                                    <input type="number" class="form-control" placeholder="" min="1" name="value_commission_mod" id="value_commission_mod" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
                                                                     </div>
