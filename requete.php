@@ -2,7 +2,25 @@
 <!-- Nom &amp; Prénom: WOUMTANA P. Youssouf
             Téléphone: +226 63 86 22 46 / 73 35 41 41
                 Email: issoufwoumtana@gmail.com -->
-                <?php
+<?php
+    if(isset($_COOKIE['lang'])) {
+        switch($_COOKIE['lang']){
+            case 'bn' : include("lang/bn.php"); break;
+            case 'cn' : include("lang/cn.php"); break;
+            case 'de' : include("lang/de.php"); break;
+            case 'en' : include("lang/en.php"); break;
+            case 'esp' : include("lang/esp.php"); break;
+            case 'fr' : include("lang/fr.php"); break;
+            case 'in' : include("lang/in.php"); break;
+            case 'jp' : include("lang/jp.php"); break;
+            case 'ko' : include("lang/ko.php"); break;
+            case 'pt' : include("lang/pt.php"); break;
+            case 'ru' : include("lang/ru.php"); break;
+            default : include("lang/sa.php"); break;
+        }
+    }else{
+        include("lang/en.php");
+    }
     include("query/fonction.php");
     include("dico.php");
     $tab_infos_user[] = array();
@@ -88,13 +106,13 @@
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-themecolor">Request</h3>
+                    <h3 class="text-themecolor"><?php echo $request; ?></h3>
                 </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                        <li class="breadcrumb-item">Taxi booking</li>
-                        <li class="breadcrumb-item active">Request</li>
+                        <li class="breadcrumb-item"><a href="index.php"><?php echo $home; ?></a></li>
+                        <li class="breadcrumb-item"><?php echo $taxi_booking; ?></li>
+                        <li class="breadcrumb-item active"><?php echo $request; ?></li>
                     </ol>
                 </div>
                 <div>
@@ -115,7 +133,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">List of requests</h4>
+                                <h4 class="card-title"><?php echo $list_of_requests; ?></h4>
                                 <!-- <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> -->
                                 <div class="table-responsive m-t-10">
                                     <?php
@@ -128,21 +146,21 @@
                                         <thead>
                                             <tr>
                                                 <th>N°</th>
-                                                <th>Payment</th>
-                                                <th width="5%">Method</th>
-                                                <th>Customer</th>
-                                                <th>Driver</th>
-                                                <th>Depart</th>
-                                                <th>Destination</th>
-                                                <th>Distance</th>
-                                                <th>Duration</th>
-                                                <th>Cost (<?php echo $tab_currency[0]['symbole'] ?>)</th>
+                                                <th><?php echo $payment; ?></th>
+                                                <th width="5%"><?php echo $method; ?></th>
+                                                <th><?php echo $customer; ?></th>
+                                                <th><?php echo $driver; ?></th>
+                                                <th><?php echo $depart; ?></th>
+                                                <th><?php echo $destination; ?></th>
+                                                <th><?php echo $distance; ?></th>
+                                                <th><?php echo $duration; ?></th>
+                                                <th><?php echo $cost; ?> (<?php echo $tab_currency[0]['symbole'] ?>)</th>
                                                 <!-- <th>Path</th> -->
-                                                <th>Status</th>
+                                                <th><?php echo $status; ?></th>
                                                 <!-- <th>Race status</th> -->
-                                                <th>Created</th>
-                                                <th>Modified</th>
-                                                <th>Actions</th>
+                                                <th><?php echo $created; ?></th>
+                                                <th><?php echo $modified; ?></th>
+                                                <th><?php echo $actions; ?></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -166,10 +184,14 @@
                                                             <td><span class="badge badge-warning">'.$tab_requete[$i]['statut'].'</span></td>
                                                             <td>'.$tab_requete[$i]['creer'].'</td>
                                                             <td>'.$tab_requete[$i]['modifier'].'</td>
-                                                            <td>
-                                                                <input type="hidden" value="'.$tab_requete[$i]['id'].'" name="" id="id_affectation_'.$i.'">
-                                                                <a href="query/action.php?id_affectation='.$tab_requete[$i]['id'].'" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a>
-                                                            </td>
+                                                            <td>';
+                                                                if($tab_requete[$i]['statut'] == "new" || $tab_requete[$i]['statut'] == "canceled" || $tab_requete[$i]['statut'] == "rejected"){
+                                                                    echo '
+                                                                        <input type="hidden" value="'.$tab_requete[$i]['id'].'" name="" id="id_affectation_'.$i.'">
+                                                                        <a href="query/action.php?id_affectation='.$tab_requete[$i]['id'].'" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-trash"></i> </a>
+                                                                    ';
+                                                                }
+                                                            echo '</td>
                                                         </tr>
                                                     ';
                                                     // <a href="query/action.php?id_affectation_activer='.$tab_requete[$i]['id'].'" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <i class="fa fa-check"></i> </a>

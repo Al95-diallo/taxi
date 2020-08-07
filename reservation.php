@@ -2,7 +2,25 @@
 <!-- Nom &amp; Prénom: WOUMTANA P. Youssouf
             Téléphone: +226 63 86 22 46 / 73 35 41 41
                 Email: issoufwoumtana@gmail.com -->
-                <?php
+<?php
+    if(isset($_COOKIE['lang'])) {
+        switch($_COOKIE['lang']){
+            case 'bn' : include("lang/bn.php"); break;
+            case 'cn' : include("lang/cn.php"); break;
+            case 'de' : include("lang/de.php"); break;
+            case 'en' : include("lang/en.php"); break;
+            case 'esp' : include("lang/esp.php"); break;
+            case 'fr' : include("lang/fr.php"); break;
+            case 'in' : include("lang/in.php"); break;
+            case 'jp' : include("lang/jp.php"); break;
+            case 'ko' : include("lang/ko.php"); break;
+            case 'pt' : include("lang/pt.php"); break;
+            case 'ru' : include("lang/ru.php"); break;
+            default : include("lang/sa.php"); break;
+        }
+    }else{
+        include("lang/en.php");
+    }
     include("query/fonction.php");
     include("dico.php");
     $tab_infos_user[] = array();
@@ -88,13 +106,13 @@
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-themecolor">Booking</h3>
+                    <h3 class="text-themecolor"><?php echo $booking; ?></h3>
                 </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                        <li class="breadcrumb-item">Coordination</li>
-                        <li class="breadcrumb-item active">Booking</li>
+                        <li class="breadcrumb-item"><a href="index.php"><?php echo $home; ?></a></li>
+                        <li class="breadcrumb-item"><?php echo $coordination; ?></li>
+                        <li class="breadcrumb-item active"><?php echo $booking; ?></li>
                     </ol>
                 </div>
                 <div>
@@ -115,7 +133,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">List of reservations</h4>
+                                <h4 class="card-title"><?php echo $list_of_reservations; ?></h4>
                                 <!-- <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> -->
                                 <div class="table-responsive m-t-10">
                                     <?php
@@ -127,16 +145,16 @@
                                             <tr>
                                                 <th>N°</th>
                                                 <!-- <th>Véhicule</th> -->
-                                                <th>Customer</th>
-                                                <th>Distance</th>
-                                                <th>Cost</th>
-                                                <th>Departure date</th>
-                                                <th>Departure time.</th>
-                                                <th>Contact</th>
-                                                <th>Status</th>
-                                                <th>Created</th>
-                                                <th>Modify</th>
-                                                <th>Actions</th>
+                                                <th><?php echo $customer; ?></th>
+                                                <th><?php echo $distance; ?></th>
+                                                <th><?php echo $cost; ?></th>
+                                                <th><?php echo $departure_date; ?></th>
+                                                <th><?php echo $departure_time; ?></th>
+                                                <th><?php echo $contact; ?></th>
+                                                <th><?php echo $status; ?></th>
+                                                <th><?php echo $created; ?></th>
+                                                <th><?php echo $modified; ?></th>
+                                                <th><?php echo $actions; ?></th>
                                             </tr>
                                         </thead>
                                         <tbody>

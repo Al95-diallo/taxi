@@ -52,6 +52,71 @@
             $tab_user_info[] = array();
             $tab_user_info = $_SESSION['user_info'];
         ?>
+        <!-- ============================================================== -->
+        <!-- Language -->
+        <!-- ============================================================== -->
+        <li class="nav-item dropdown">
+            <?php if(isset($_COOKIE['lang'])) { ?>
+                        <?php if($_COOKIE['lang'] == "en"){ ?>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-gb"></i></a>
+                        <?php }elseif($_COOKIE['lang'] == "in"){ ?>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-in"></i></a>
+                        <?php }elseif($_COOKIE['lang'] == "fr"){ ?>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-fr"></i></a>
+                        <?php }elseif($_COOKIE['lang'] == "cn"){ ?>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-cn"></i></a>
+                        <?php }elseif($_COOKIE['lang'] == "de"){ ?>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-de"></i></a>
+                        <?php }elseif($_COOKIE['lang'] == "esp"){ ?>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-es"></i></a>
+                        <?php }elseif($_COOKIE['lang'] == "jp"){ ?>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-jp"></i></a>
+                        <?php }elseif($_COOKIE['lang'] == "kp"){ ?>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-kp"></i></a>
+                        <?php }elseif($_COOKIE['lang'] == "pt"){ ?>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-pt"></i></a>
+                        <?php }elseif($_COOKIE['lang'] == "ru"){ ?>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-ru"></i></a>
+                        <?php }elseif($_COOKIE['lang'] == "sa"){ ?>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-sa"></i></a>
+                        <?php }else{ ?>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-bd"></i></a>
+                        <?php } ?>
+                            <div class="dropdown-menu dropdown-menu-right scale-up">
+                                
+                                    <a class="dropdown-item" href="#" onclick="setLang('en');" <?php if($_COOKIE['lang'] == "en"){ echo 'style="display:none;"'; } ?>><i class="flag-icon flag-icon-gb"></i> English</a>
+                                    <a class="dropdown-item" href="#" onclick="setLang('in');" <?php if($_COOKIE['lang'] == "in"){ echo 'style="display:none;"'; } ?>><i class="flag-icon flag-icon-in"></i> भारत</a>
+                                    <a class="dropdown-item" href="#" onclick="setLang('fr');" <?php if($_COOKIE['lang'] == "fr"){ echo 'style="display:none;"'; } ?>><i class="flag-icon flag-icon-fr"></i> Français</a>
+                                    <a class="dropdown-item" href="#" onclick="setLang('cn');" <?php if($_COOKIE['lang'] == "cn"){ echo 'style="display:none;"'; } ?>><i class="flag-icon flag-icon-cn"></i> 中国</a>
+                                    <a class="dropdown-item" href="#" onclick="setLang('de');" <?php if($_COOKIE['lang'] == "de"){ echo 'style="display:none;"'; } ?>><i class="flag-icon flag-icon-de"></i> Deutschland</a>
+                                    <a class="dropdown-item" href="#" onclick="setLang('esp');" <?php if($_COOKIE['lang'] == "esp"){ echo 'style="display:none;"'; } ?>><i class="flag-icon flag-icon-es"></i> España</a>
+                                    <a class="dropdown-item" href="#" onclick="setLang('jp');" <?php if($_COOKIE['lang'] == "jp"){ echo 'style="display:none;"'; } ?>><i class="flag-icon flag-icon-jp"></i> 日本</a>
+                                    <a class="dropdown-item" href="#" onclick="setLang('ko');" <?php if($_COOKIE['lang'] == "ko"){ echo 'style="display:none;"'; } ?>><i class="flag-icon flag-icon-kp"></i> 한국어</a>
+                                    <a class="dropdown-item" href="#" onclick="setLang('pt');" <?php if($_COOKIE['lang'] == "pt"){ echo 'style="display:none;"'; } ?>><i class="flag-icon flag-icon-pt"></i> Português</a>
+                                    <a class="dropdown-item" href="#" onclick="setLang('ru');" <?php if($_COOKIE['lang'] == "ru"){ echo 'style="display:none;"'; } ?>><i class="flag-icon flag-icon-ru"></i> русский</a>
+                                    <a class="dropdown-item" href="#" onclick="setLang('sa');" <?php if($_COOKIE['lang'] == "sa"){ echo 'style="display:none;"'; } ?>><i class="flag-icon flag-icon-sa"></i> عرب</a>
+                                    <a class="dropdown-item" href="#" onclick="setLang('bn');" <?php if($_COOKIE['lang'] == "bn"){ echo 'style="display:none;"'; } ?>><i class="flag-icon flag-icon-bd"></i> বাংলা</a>
+                            </div>
+                        <?php  ?>
+                <?php }else{ ?>
+                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-gb"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right scale-up">
+                            <a class="dropdown-item" href="#" onclick="setLang('in');"><i class="flag-icon flag-icon-in"></i> भारत</a>
+                            <a class="dropdown-item" href="#" onclick="setLang('fr');"><i class="flag-icon flag-icon-fr"></i> Français</a>
+                            <a class="dropdown-item" href="#" onclick="setLang('cn');"><i class="flag-icon flag-icon-cn"></i> 中国</a>
+                            <a class="dropdown-item" href="#" onclick="setLang('de');"><i class="flag-icon flag-icon-de"></i> Deutschland</a>
+                            <a class="dropdown-item" href="#" onclick="setLang('esp');"><i class="flag-icon flag-icon-es"></i> España</a>
+                            <a class="dropdown-item" href="#" onclick="setLang('jp');"><i class="flag-icon flag-icon-jp"></i> 日本</a>
+                            <a class="dropdown-item" href="#" onclick="setLang('ko');"><i class="flag-icon flag-icon-kp"></i> 한국어</a>
+                            <a class="dropdown-item" href="#" onclick="setLang('pt');"><i class="flag-icon flag-icon-pt"></i> Português</a>
+                            <a class="dropdown-item" href="#" onclick="setLang('ru');"><i class="flag-icon flag-icon-ru"></i> русский</a>
+                            <a class="dropdown-item" href="#" onclick="setLang('sa');"><i class="flag-icon flag-icon-sa"></i> عرب</a>
+                            <a class="dropdown-item" href="#" onclick="setLang('bn');"><i class="flag-icon flag-icon-bd"></i> বাংলা</a>
+                        </div>
+                <?php } ?>
+        </li>
+
+        <!-- Profil -->
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/users/flag.png" alt="user" class="profile-pic" /></a>
             <div class="dropdown-menu dropdown-menu-right scale-up">
@@ -73,7 +138,7 @@
                     <!-- <li role="separator" class="divider"></li>
                     <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li> -->
                     <li role="separator" class="divider"></li>
-                    <li><a href="query/action.php?logout=yes"><i class="fa fa-power-off"></i> Log out</a></li>
+                    <li><a href="query/action.php?logout=yes"><i class="fa fa-power-off"></i> <?php echo $log_out; ?></a></li>
                 </ul>
             </div>
         </li>

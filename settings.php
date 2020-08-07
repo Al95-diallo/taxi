@@ -2,7 +2,25 @@
 <!-- Nom &amp; Prénom: WOUMTANA P. Youssouf
             Téléphone: +226 63 86 22 46 / 73 35 41 41
                 Email: issoufwoumtana@gmail.com -->
-                <?php
+<?php
+    if(isset($_COOKIE['lang'])) {
+        switch($_COOKIE['lang']){
+            case 'bn' : include("lang/bn.php"); break;
+            case 'cn' : include("lang/cn.php"); break;
+            case 'de' : include("lang/de.php"); break;
+            case 'en' : include("lang/en.php"); break;
+            case 'esp' : include("lang/esp.php"); break;
+            case 'fr' : include("lang/fr.php"); break;
+            case 'in' : include("lang/in.php"); break;
+            case 'jp' : include("lang/jp.php"); break;
+            case 'ko' : include("lang/ko.php"); break;
+            case 'pt' : include("lang/pt.php"); break;
+            case 'ru' : include("lang/ru.php"); break;
+            default : include("lang/sa.php"); break;
+        }
+    }else{
+        include("lang/en.php");
+    }
     include("query/fonction.php");
     include("dico.php");
     $tab_infos_user[] = array();
@@ -88,13 +106,13 @@
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-themecolor">Settings</h3>
+                    <h3 class="text-themecolor"><?php echo $settings ?></h3>
                 </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                        <li class="breadcrumb-item active">Administrative tools</li>
-                        <li class="breadcrumb-item">Settings</li>
+                        <li class="breadcrumb-item"><a href="index.php"><?php echo $home; ?></a></li>
+                        <li class="breadcrumb-item active"><?php echo $admin_tools ?></li>
+                        <li class="breadcrumb-item"><?php echo $settings ?></li>
                     </ol>
                 </div>
                 <div>
@@ -115,7 +133,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Settings</h4>
+                                <h4 class="card-title"><?php echo $settings ?></h4>
                                 <!-- <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> -->
                                 <form class="form-horizontal " action="query/action.php" method="post" enctype="multipart/form-data">
                                     <div class="modal-body">
@@ -127,7 +145,7 @@
                                             <div class="row">
                                                 <div class="col-md-4 m-b-0">
                                                     <div class="form-group mb-3">
-                                                        <label class="mr-sm-2" for="designation">Admin panel title</label>
+                                                        <label class="mr-sm-2" for="designation"><?php echo $admin_panel_title ?></label>
                                                         <input type="text" class="form-control " placeholder="" name="setting_title" id="setting_title" value='<?php if(count($tab_settings) != 0) echo $tab_settings[0]['title'] ?>' required> 
                                                         <div class="invalid-feedback">
                                                             Désolé, entrez l'intitulé de la catégorie de devis
@@ -136,7 +154,7 @@
                                                 </div>
                                                 <div class="col-md-4 m-b-0">
                                                     <div class="form-group mb-3">
-                                                        <label class="mr-sm-2" for="designation">Admin panel footer</label>
+                                                        <label class="mr-sm-2" for="designation"><?php echo $admin_panel_footer ?></label>
                                                         <input type="text" class="form-control " placeholder="" name="setting_footer" id="setting_footer" value='<?php if(count($tab_settings) != 0) echo $tab_settings[0]['footer'] ?>' required> 
                                                         <div class="invalid-feedback">
                                                             Désolé, entrez l'intitulé de la catégorie de devis
@@ -145,7 +163,7 @@
                                                 </div>
                                                 <div class="col-md-4 m-b-0">
                                                     <div class="form-group mb-3">
-                                                        <label class="mr-sm-2" for="designation">Reception email address</label>
+                                                        <label class="mr-sm-2" for="designation"><?php echo $reception_email_address ?></label>
                                                         <input type="text" class="form-control " placeholder="" name="setting_email" id="setting_email" readonly value='<?php if(count($tab_settings) != 0) echo $tab_settings[0]['email'] ?>' required> 
                                                         <div class="invalid-feedback">
                                                             Désolé, entrez l'intitulé de la catégorie de devis
@@ -156,8 +174,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-dark waves-effect">Save</button>
-                                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-dark waves-effect"><?php echo $save ?></button>
+                                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><?php echo $cancel ?></button>
                                     </div>
                                 </form>
                             </div>

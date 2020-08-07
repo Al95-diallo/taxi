@@ -2,7 +2,25 @@
 <!-- Nom &amp; Prénom: WOUMTANA P. Youssouf
             Téléphone: +226 63 86 22 46 / 73 35 41 41
                 Email: issoufwoumtana@gmail.com -->
-                <?php
+<?php
+    if(isset($_COOKIE['lang'])) {
+        switch($_COOKIE['lang']){
+            case 'bn' : include("lang/bn.php"); break;
+            case 'cn' : include("lang/cn.php"); break;
+            case 'de' : include("lang/de.php"); break;
+            case 'en' : include("lang/en.php"); break;
+            case 'esp' : include("lang/esp.php"); break;
+            case 'fr' : include("lang/fr.php"); break;
+            case 'in' : include("lang/in.php"); break;
+            case 'jp' : include("lang/jp.php"); break;
+            case 'ko' : include("lang/ko.php"); break;
+            case 'pt' : include("lang/pt.php"); break;
+            case 'ru' : include("lang/ru.php"); break;
+            default : include("lang/sa.php"); break;
+        }
+    }else{
+        include("lang/en.php");
+    }
     include("query/fonction.php");
     include("dico.php");
     $tab_infos_user[] = array();
@@ -112,13 +130,13 @@
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-themecolor">Driver stats</h3>
+                    <h3 class="text-themecolor"><?php echo $driver_stats; ?></h3>
                 </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                        <li class="breadcrumb-item">Statistics</li>
-                        <li class="breadcrumb-item active">Driver stats</li>
+                        <li class="breadcrumb-item"><a href="index.php"><?php echo $home; ?></a></li>
+                        <li class="breadcrumb-item"><?php echo $statistics; ?></li>
+                        <li class="breadcrumb-item active"><?php echo $driver_stats; ?></li>
                     </ol>
                 </div>
                 <div>
@@ -147,7 +165,7 @@
                                                 $tab_conducteur[] = array(); 
                                                 $tab_conducteur = getConducteur();
                                             ?>
-                                            <label class="mr-sm-2" for="designation">Driver</label>
+                                            <label class="mr-sm-2" for="designation"><?php echo $driver; ?></label>
                                             <select class="form-control " id="driver" name="driver" required>
                                                 <?php
                                                     for($i=0; $i<count($tab_conducteur); $i++){
@@ -159,7 +177,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group mb-3">
-                                            <label class="mr-sm-2" for="designation">Month</label>
+                                            <label class="mr-sm-2" for="designation"><?php echo $month; ?></label>
                                             <select class="form-control " id="month" name="month" required>
                                                 <option value="01">January</option>
                                                 <option value="02">February</option>
@@ -178,7 +196,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group mb-3">
-                                            <label class="mr-sm-2" for="designation">Year</label>
+                                            <label class="mr-sm-2" for="designation"><?php echo $year; ?></label>
                                             <select class="form-control " id="year" name="year" required>
                                                 <option value="2019">2019</option>
                                                 <option value="2020">2020</option>
@@ -191,7 +209,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-1 m-t-30">
-                                        <button type="submit" class="btn btn-dark waves-effect" style="height:37px;" onclick="apply(driver.value,month.value,year.value)">APPLY</button>
+                                        <button type="submit" class="btn btn-dark waves-effect" style="height:37px;" onclick="apply(driver.value,month.value,year.value)"><?php echo $apply; ?></button>
                                     </div>
                                 </div>
                             </div>
@@ -206,7 +224,7 @@
                                     $tab_currency[] = array(); 
                                     $tab_currency = getEnabledCurrency();
                                 ?>
-                                <h4 class="card-title">Driver stats (<?php echo $tab_currency[0]['symbole']; ?>)</h4>
+                                <h4 class="card-title"><?php echo $driver_stats; ?> (<?php echo $tab_currency[0]['symbole']; ?>)</h4>
                                 <div class="row">
                                     <div class="col-md-5"></div>
                                     <div class="col-md-2">

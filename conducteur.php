@@ -2,7 +2,25 @@
 <!-- Nom &amp; Prénom: WOUMTANA P. Youssouf
             Téléphone: +226 63 86 22 46 / 73 35 41 41
                 Email: issoufwoumtana@gmail.com -->
-                <?php
+<?php
+    if(isset($_COOKIE['lang'])) {
+        switch($_COOKIE['lang']){
+            case 'bn' : include("lang/bn.php"); break;
+            case 'cn' : include("lang/cn.php"); break;
+            case 'de' : include("lang/de.php"); break;
+            case 'en' : include("lang/en.php"); break;
+            case 'esp' : include("lang/esp.php"); break;
+            case 'fr' : include("lang/fr.php"); break;
+            case 'in' : include("lang/in.php"); break;
+            case 'jp' : include("lang/jp.php"); break;
+            case 'ko' : include("lang/ko.php"); break;
+            case 'pt' : include("lang/pt.php"); break;
+            case 'ru' : include("lang/ru.php"); break;
+            default : include("lang/sa.php"); break;
+        }
+    }else{
+        include("lang/en.php");
+    }
     include("query/fonction.php");
     include("dico.php");
     $tab_infos_user[] = array();
@@ -88,13 +106,13 @@
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-themecolor">Driver</h3>
+                    <h3 class="text-themecolor"><?php echo $driver ?></h3>
                 </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                        <li class="breadcrumb-item">User APP</li>
-                        <li class="breadcrumb-item active">Driver</li>
+                        <li class="breadcrumb-item"><a href="index.php"><?php echo $home ?></a></li>
+                        <li class="breadcrumb-item"><?php echo $user_app ?></li>
+                        <li class="breadcrumb-item active"><?php echo $driver ?></li>
                     </ol>
                 </div>
                 <div>
@@ -115,14 +133,14 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">List of drivers</h4>
+                                <h4 class="card-title"><?php echo $list_of_drivers ?></h4>
                                 <!-- <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> -->
                                 <!-- <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#add-conducteur"><i class="fa fa-plus m-r-10"></i>Add</button> -->
                                 <div id="add-conducteur" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content bg-gris">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="myModalLabel">Add a driver</h4>
+                                                <h4 class="modal-title" id="myModalLabel"><?php echo $add_a_driver ?></h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                             </div>
                                             <form class="form-horizontal " action="query/action.php" method="post">
@@ -131,7 +149,7 @@
                                                         <div class="row">
                                                             <div class="col-md-6 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Last name</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $last_name ?></label>
                                                                     <input type="text" class="form-control " placeholder="" name="nom_conducteur" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -140,7 +158,7 @@
                                                             </div>
                                                             <div class="col-md-6 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">First name</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $first_name ?></label>
                                                                     <input type="text" class="form-control " placeholder="" name="prenom_conducteur" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -149,7 +167,7 @@
                                                             </div>
                                                             <div class="col-md-6 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">National card number</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $national_card_number ?></label>
                                                                     <input type="text" class="form-control " placeholder="" name="cnib_conducteur" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -158,7 +176,7 @@
                                                             </div>
                                                             <div class="col-md-6 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Phone</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $phone ?></label>
                                                                     <input type="text" class="form-control " placeholder="" name="login_conducteur" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -167,7 +185,7 @@
                                                             </div>
                                                             <div class="col-md-6 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Password</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $password ?></label>
                                                                     <input type="password" class="form-control " placeholder="" name="mdp_conducteur" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -176,7 +194,7 @@
                                                             </div>
                                                             <div class="col-md-6 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Status</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $status ?></label>
                                                                     <select class="form-control " id="exampleFormControlSelect1" name="statut_conducteur" required>
                                                                         <option value="yes">Yes</option>
                                                                         <option value="no">No</option>
@@ -190,8 +208,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-dark waves-effect">Save</button>
-                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-dark waves-effect"><?php echo $save ?></button>
+                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><?php echo $cancel ?></button>
                                                 </div>
                                             </form>
                                         </div>
@@ -203,7 +221,7 @@
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content bg-gris">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="myModalLabel">Edit a driver</h4>
+                                                <h4 class="modal-title" id="myModalLabel"><?php echo $edit_a_driver ?></h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                             </div>
                                             <form class="form-horizontal " action="query/action.php" method="post">
@@ -213,7 +231,7 @@
                                                             <input type="hidden" name="id_conducteur_mod" id="id_conducteur_mod" value="<?php echo $id_user; ?>">
                                                             <div class="col-md-6 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Last name</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $last_name ?></label>
                                                                     <input type="text" class="form-control " placeholder="" name="nom_conducteur_mod" id="nom_conducteur_mod" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -222,7 +240,7 @@
                                                             </div>
                                                             <div class="col-md-6 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">First name</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $first_name ?></label>
                                                                     <input type="text" class="form-control " placeholder="" name="prenom_conducteur_mod" id="prenom_conducteur_mod" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -231,7 +249,7 @@
                                                             </div>
                                                             <div class="col-md-6 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">National card number</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $national_card_number ?></label>
                                                                     <input type="text" class="form-control " placeholder="" name="cnib_conducteur_mod" id="cnib_conducteur_mod" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -240,7 +258,7 @@
                                                             </div>
                                                             <div class="col-md-6 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Phone</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $phone ?></label>
                                                                     <input type="text" class="form-control " placeholder="" name="login_conducteur_mod" id="login_conducteur_mod" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -258,7 +276,7 @@
                                                             </div> -->
                                                             <div class="col-md-6 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Status</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $status ?></label>
                                                                     <select class="form-control " id="statut_conducteur_mod" name="statut_conducteur_mod" required>
                                                                         <option value="yes">Yes</option>
                                                                         <option value="no">No</option>
@@ -272,8 +290,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-dark waves-effect">Save</button>
-                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-dark waves-effect"><?php echo $save ?></button>
+                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><?php echo $cancel ?></button>
                                                 </div>
                                             </form>
                                         </div>
@@ -290,15 +308,15 @@
                                         <thead>
                                             <tr>
                                                 <th width="5%">N°</th>
-                                                <th width="10%">Photo</th>
-                                                <th width="20%">Last name</th>
-                                                <th width="20%">First name</th>
-                                                <th width="10%">Phone</th>
-                                                <th width="10%">National card number</th>
-                                                <th width="5%">Status</th>
-                                                <th width="5%">Created</th>
-                                                <th width="5%">Modify</th>
-                                                <th width="10%">Actions</th>
+                                                <th width="10%"><?php echo $photo ?></th>
+                                                <th width="20%"><?php echo $last_name ?></th>
+                                                <th width="20%"><?php echo $first_name ?></th>
+                                                <th width="10%"><?php echo $phone ?></th>
+                                                <th width="10%"><?php echo $national_card_number ?></th>
+                                                <th width="5%"><?php echo $status ?></th>
+                                                <th width="5%"><?php echo $created ?></th>
+                                                <th width="5%"><?php echo $modified ?></th>
+                                                <th width="10%"><?php echo $actions ?></th>
                                             </tr>
                                         </thead>
                                         <tbody>

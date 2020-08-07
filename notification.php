@@ -2,6 +2,24 @@
             Téléphone: +226 63 86 22 46 / 73 35 41 41
                 Email: issoufwoumtana@gmail.com -->
 <?php
+    if(isset($_COOKIE['lang'])) {
+        switch($_COOKIE['lang']){
+            case 'bn' : include("lang/bn.php"); break;
+            case 'cn' : include("lang/cn.php"); break;
+            case 'de' : include("lang/de.php"); break;
+            case 'en' : include("lang/en.php"); break;
+            case 'esp' : include("lang/esp.php"); break;
+            case 'fr' : include("lang/fr.php"); break;
+            case 'in' : include("lang/in.php"); break;
+            case 'jp' : include("lang/jp.php"); break;
+            case 'ko' : include("lang/ko.php"); break;
+            case 'pt' : include("lang/pt.php"); break;
+            case 'ru' : include("lang/ru.php"); break;
+            default : include("lang/sa.php"); break;
+        }
+    }else{
+        include("lang/en.php");
+    }
     include("query/fonction.php");
     include("dico.php");
     $tab_infos_user[] = array();
@@ -87,13 +105,13 @@
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-themecolor">Notification</h3>
+                    <h3 class="text-themecolor"><?php echo $notification; ?></h3>
                 </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                        <li class="breadcrumb-item">Membre</li>
-                        <li class="breadcrumb-item active">Notification</li>
+                        <li class="breadcrumb-item"><a href="index.php"><?php echo $home; ?></a></li>
+                        <li class="breadcrumb-item"><?php echo $member; ?></li>
+                        <li class="breadcrumb-item active"><?php echo $notification; ?></li>
                     </ol>
                 </div>
                 <div>
@@ -114,14 +132,14 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">List of sent notifications</h4>
+                                <h4 class="card-title"><?php echo $list_of_sent_notifications; ?></h4>
                                 <!-- <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> -->
                                 <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#add-notification"><i class="fa fa-plus m-r-10"></i>Add</button>
                                 <div id="add-notification" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content bg-gris">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="myModalLabel">Add a notification</h4>
+                                                <h4 class="modal-title" id="myModalLabel"><?php echo $add_a_notification; ?></h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                             </div>
                                             <form class="form-horizontal " action="query/send_notification.php" method="post">
@@ -131,7 +149,7 @@
                                                             <input type="hidden" name="id_user" value="<?php echo $id_user; ?>">
                                                             <div class="col-md-12 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Title</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $title; ?></label>
                                                                     <input type="text" class="form-control " placeholder="" value="" name="titre_notification" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -140,7 +158,7 @@
                                                             </div>
                                                             <div class="col-md-12 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Message</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $message; ?></label>
                                                                     <textarea name="msg_notification" class="form-control" id="" cols="30" rows="10" required></textarea>
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -151,8 +169,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-dark waves-effect">Save</button>
-                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-dark waves-effect"><?php echo $save; ?></button>
+                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><?php echo $cancel; ?></button>
                                                 </div>
                                             </form>
                                         </div>
@@ -169,11 +187,11 @@
                                         <thead>
                                             <tr>
                                                 <th>N°</th>
-                                                <th>Title</th>
-                                                <th>Message</th>
-                                                <th>Created</th>
-                                                <th>Modified</th>
-                                                <th>Actions</th>
+                                                <th><?php echo $title; ?></th>
+                                                <th><?php echo $message; ?></th>
+                                                <th><?php echo $created; ?></th>
+                                                <th><?php echo $modified; ?></th>
+                                                <th><?php echo $actions; ?></th>
                                             </tr>
                                         </thead>
                                         <tbody>

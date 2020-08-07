@@ -210,3 +210,14 @@ $(function () {
         
     
 });
+
+function setLang(langChoosed){
+    var exdays = 1;
+    var cname = "lang";
+    var cvalue = langChoosed;
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    location.reload();
+}

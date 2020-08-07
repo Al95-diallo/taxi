@@ -2,7 +2,25 @@
 <!-- Nom &amp; Prénom: WOUMTANA P. Youssouf
             Téléphone: +226 63 86 22 46 / 73 35 41 41
                 Email: issoufwoumtana@gmail.com -->
-                <?php
+<?php
+    if(isset($_COOKIE['lang'])) {
+        switch($_COOKIE['lang']){
+            case 'bn' : include("lang/bn.php"); break;
+            case 'cn' : include("lang/cn.php"); break;
+            case 'de' : include("lang/de.php"); break;
+            case 'en' : include("lang/en.php"); break;
+            case 'esp' : include("lang/esp.php"); break;
+            case 'fr' : include("lang/fr.php"); break;
+            case 'in' : include("lang/in.php"); break;
+            case 'jp' : include("lang/jp.php"); break;
+            case 'ko' : include("lang/ko.php"); break;
+            case 'pt' : include("lang/pt.php"); break;
+            case 'ru' : include("lang/ru.php"); break;
+            default : include("lang/sa.php"); break;
+        }
+    }else{
+        include("lang/en.php");
+    }
     include("query/fonction.php");
     include("dico.php");
     $tab_infos_user[] = array();
@@ -88,13 +106,13 @@
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-themecolor">Change password</h3>
+                    <h3 class="text-themecolor"><?php echo $change_pwd; ?></h3>
                 </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item breadcrumb-item-warning"><a href="index.php">Home</a></li>
-                        <li class="breadcrumb-item">Administration tools</li>
-                        <li class="breadcrumb-item active">Change password</li>
+                        <li class="breadcrumb-item breadcrumb-item-warning"><a href="index.php"><?php echo $home; ?></a></li>
+                        <li class="breadcrumb-item"><?php echo $admin_tools; ?></li>
+                        <li class="breadcrumb-item active"><?php echo $change_pwd; ?></li>
                     </ol>
                 </div>
                 <div>
@@ -115,14 +133,14 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Change your password</h4>
+                                <h4 class="card-title"><?php echo $change_your_pwd; ?></h4>
                                 <!-- <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> -->
                                 <form class="form-horizontal " action="query/action.php" method="post">
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-md-4 m-b-0">
                                                 <div class="form-group mb-3">
-                                                    <label class="mr-sm-2" for="designation">Old password</label>
+                                                    <label class="mr-sm-2" for="designation"><?php echo $old_pwd; ?></label>
                                                     <input type="password" class="form-control " placeholder="" name="anc_mdp" id="anc_mdp" required> 
                                                     <div class="invalid-feedback">
                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -131,7 +149,7 @@
                                             </div>
                                             <div class="col-md-4 m-b-0">
                                                 <div class="form-group mb-3">
-                                                    <label class="mr-sm-2" for="designation">New password</label>
+                                                    <label class="mr-sm-2" for="designation"><?php echo $new_pwd; ?></label>
                                                     <input type="password" class="form-control " placeholder="" name="new_mdp" id="new_mdp" onkeyup="checkMdp()" required> 
                                                     <div class="invalid-feedback">
                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -140,7 +158,7 @@
                                             </div>
                                             <div class="col-md-4 m-b-0">
                                                 <div class="form-group mb-3">
-                                                    <label class="mr-sm-2" for="designation">Confirm password</label>
+                                                    <label class="mr-sm-2" for="designation"><?php echo $confirm_pwd; ?></label>
                                                     <input type="password" class="form-control " placeholder="" name="conf_mdp" id="conf_mdp" onkeyup="checkMdp()" required> 
                                                     <div class="invalid-feedback" id="message" style="color:red;">
                                                         Les mots de passe ne sont pas identiques.
@@ -149,8 +167,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-dark waves-effect">Save</button>
-                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-dark waves-effect"><?php echo $save; ?></button>
+                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><?php echo $cancel; ?></button>
                                 </form>
                             </div>
                         </div>

@@ -1,4 +1,22 @@
 <?php
+    if(isset($_COOKIE['lang'])) {
+        switch($_COOKIE['lang']){
+            case 'bn' : include("lang/bn.php"); break;
+            case 'cn' : include("lang/cn.php"); break;
+            case 'de' : include("lang/de.php"); break;
+            case 'en' : include("lang/en.php"); break;
+            case 'esp' : include("lang/esp.php"); break;
+            case 'fr' : include("lang/fr.php"); break;
+            case 'in' : include("lang/in.php"); break;
+            case 'jp' : include("lang/jp.php"); break;
+            case 'ko' : include("lang/ko.php"); break;
+            case 'pt' : include("lang/pt.php"); break;
+            case 'ru' : include("lang/ru.php"); break;
+            default : include("lang/sa.php"); break;
+        }
+    }else{
+        include("lang/en.php");
+    }
     include("query/fonction.php");
     include("dico.php");
 ?>
@@ -47,7 +65,7 @@
             <div class="login-box card" style="margin-top:10%; margin-bottom:0%;">
                 <div class="card-body">
                     <form class="form-horizontal form-material" id="loginform" action="query/action.php" method="post">
-                        <h3 class="box-title m-b-20">Login</h3>
+                        <h3 class="box-title m-b-20"><?php echo $login ?></h3>
                         <div class="form-group ">
                             <div class="col-xs-12">
                                 <input class="form-control" type="text" required="" placeholder="Email" value="admin@admin.com" name="email_sc"> </div>
@@ -58,7 +76,7 @@
                         </div>
                         <div class="form-group text-center m-t-20">
                             <div class="col-xs-12">
-                                <button class="btn btn-dark btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Login</button>
+                                <button class="btn btn-dark btn-lg btn-block text-uppercase waves-effect waves-light" type="submit"><?php echo $login ?></button>
                             </div>
                         </div>
                     </form>

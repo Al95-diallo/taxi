@@ -3,6 +3,24 @@
             Téléphone: +226 63 86 22 46 / 73 35 41 41
                 Email: issoufwoumtana@gmail.com -->
 <?php
+    if(isset($_COOKIE['lang'])) {
+        switch($_COOKIE['lang']){
+            case 'bn' : include("lang/bn.php"); break;
+            case 'cn' : include("lang/cn.php"); break;
+            case 'de' : include("lang/de.php"); break;
+            case 'en' : include("lang/en.php"); break;
+            case 'esp' : include("lang/esp.php"); break;
+            case 'fr' : include("lang/fr.php"); break;
+            case 'in' : include("lang/in.php"); break;
+            case 'jp' : include("lang/jp.php"); break;
+            case 'ko' : include("lang/ko.php"); break;
+            case 'pt' : include("lang/pt.php"); break;
+            case 'ru' : include("lang/ru.php"); break;
+            default : include("lang/sa.php"); break;
+        }
+    }else{
+        include("lang/en.php");
+    }
     include("query/fonction.php");
     $tab_infos_user[] = array();
     $id_user = "";
@@ -28,7 +46,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
-    <title>Je suis engagé contre la corruption</title>
+    <title><?php echo $title; ?></title>
     <!-- Bootstrap Core CSS -->
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -91,13 +109,13 @@
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-themecolor">Driver detail</h3>
+                    <h3 class="text-themecolor"><?php echo $driver_detail; ?></h3>
                 </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                        <li class="breadcrumb-item">Driver</li>
-                        <li class="breadcrumb-item active">Driver details</li>
+                        <li class="breadcrumb-item"><a href="index.php"><?php echo $home; ?></a></li>
+                        <li class="breadcrumb-item"><?php echo $driver; ?></li>
+                        <li class="breadcrumb-item active"><?php echo $driver_detail; ?></li>
                     </ol>
                 </div>
                 <div>
@@ -126,7 +144,7 @@
                                     $tab_driver_vehicle_info = getVehiculeByDriverId($_GET['id_conducteur']);
                                     $tab_service_quest[] = array();
                                 ?>
-                                <h4 class="card-title">Driver details of <?php if(count($tab_driver_info) != 0) echo $tab_driver_info[0]['nom'].' '.$tab_driver_info[0]['prenom']; ?></h4>
+                                <h4 class="card-title"><?php echo $driver_details_of; ?> <?php if(count($tab_driver_info) != 0) echo $tab_driver_info[0]['nom'].' '.$tab_driver_info[0]['prenom']; ?></h4>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="user-profile" style="width:100%;">
@@ -136,31 +154,31 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h5>Information</h5>
+                                <h5><?php echo $information; ?></h5>
                                 <div class="row">
                                     <!-- <div class="col-md-12">
                                         <label for="" class="label-detail-title">NIC :</label> <?php echo $tab_driver_info[0]['cnib']; ?>
                                     </div> -->
                                     <div class="col-md-12">
-                                        <label for="" class="label-detail-title">Phone :</label> <?php echo $tab_driver_info[0]['phone']; ?>
+                                        <label for="" class="label-detail-title"><?php echo $phone; ?> :</label> <?php echo $tab_driver_info[0]['phone']; ?>
                                     </div>
                                     <div class="col-md-12">
-                                        <label for="" class="label-detail-title">Email :</label> <?php echo $tab_driver_info[0]['email']; ?>
+                                        <label for="" class="label-detail-title"><?php echo $email; ?> :</label> <?php echo $tab_driver_info[0]['email']; ?>
                                     </div>
                                     <div class="col-md-12">
-                                        <label for="" class="label-detail-title">Status :</label> <span class="<?php if($tab_driver_info[0]['statut'] == "yes"){echo "badge badge-success";}else{echo "badge badge-danger";} ?>"><?php if($tab_driver_info[0]['statut'] == "yes"){echo "Enabled";}else{echo "Disabled";} ?></span>
+                                        <label for="" class="label-detail-title"><?php echo $status; ?> :</label> <span class="<?php if($tab_driver_info[0]['statut'] == "yes"){echo "badge badge-success";}else{echo "badge badge-danger";} ?>"><?php if($tab_driver_info[0]['statut'] == "yes"){echo "Enabled";}else{echo "Disabled";} ?></span>
                                     </div>
                                     <div class="col-md-12">
-                                        <label for="" class="label-detail-title">Online :</label> <?php echo $tab_driver_info[0]['online']; ?>
+                                        <label for="" class="label-detail-title"><?php echo $online; ?> :</label> <?php echo $tab_driver_info[0]['online']; ?>
                                     </div>
                                     <!-- <div class="col-md-12">
                                         <label for="" class="label-detail-title">Photo :</label> <?php echo $tab_driver_info[0]['photo_path']; ?>
                                     </div> -->
                                     <div class="col-md-12">
-                                        <label for="" class="label-detail-title">Created :</label> <?php echo $tab_driver_info[0]['creer']; ?>
+                                        <label for="" class="label-detail-title"><?php echo $created; ?> :</label> <?php echo $tab_driver_info[0]['creer']; ?>
                                     </div>
                                     <div class="col-md-12">
-                                        <label for="" class="label-detail-title">Edited :</label> <?php echo $tab_driver_info[0]['modifier']; ?>
+                                        <label for="" class="label-detail-title"><?php echo $edited; ?> :</label> <?php echo $tab_driver_info[0]['modifier']; ?>
                                     </div>
                                     <div class="col-md-12">
                                         <table>
@@ -170,7 +188,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <label for="" class="label-detail-title">Licence :</label>
+                                                    <label for="" class="label-detail-title"><?php echo $licence; ?> :</label>
                                                 </td>
                                                 <td>
                                                     <img class="m-l-40 p-10" src="on_demand_taxi_webservice/images/app_user/<?php echo $tab_driver_info[0]['photo_licence_path']; ?>" alt="" width="50%">
@@ -178,7 +196,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <label for="" class="label-detail-title">NIC :</label>
+                                                    <label for="" class="label-detail-title"><?php echo $nic; ?> :</label>
                                                 </td>
                                                 <td>
                                                     <img class="m-l-40 p-10" src="on_demand_taxi_webservice/images/app_user/<?php echo $tab_driver_info[0]['photo_nic_path']; ?>" alt="" width="50%">
@@ -187,25 +205,25 @@
                                         </table>
                                     </div>
                                 </div>
-                                <h5 class="m-t-20">Vehicle info</h5>
+                                <h5 class="m-t-20"><?php echo $vehicle_info; ?></h5>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label for="" class="label-detail-title">Brand :</label> <?php echo $tab_driver_vehicle_info[0]['brand']; ?>
+                                        <label for="" class="label-detail-title"><?php echo $brand; ?> :</label> <?php echo $tab_driver_vehicle_info[0]['brand']; ?>
                                     </div>
                                     <div class="col-md-12">
-                                        <label for="" class="label-detail-title">Model :</label> <?php echo $tab_driver_vehicle_info[0]['model']; ?>
+                                        <label for="" class="label-detail-title"><?php echo $model; ?> :</label> <?php echo $tab_driver_vehicle_info[0]['model']; ?>
                                     </div>
                                     <div class="col-md-12">
-                                        <label for="" class="label-detail-title">Color :</label> <?php echo $tab_driver_vehicle_info[0]['color']; ?>
+                                        <label for="" class="label-detail-title"><?php echo $color; ?> :</label> <?php echo $tab_driver_vehicle_info[0]['color']; ?>
                                     </div>
                                     <div class="col-md-12">
-                                        <label for="" class="label-detail-title">Numberplate :</label> <?php echo $tab_driver_vehicle_info[0]['numberplate']; ?>
+                                        <label for="" class="label-detail-title"><?php echo $numberplate; ?> :</label> <?php echo $tab_driver_vehicle_info[0]['numberplate']; ?>
                                     </div>
                                     <div class="col-md-12">
-                                        <label for="" class="label-detail-title">Number of passenger :</label> <?php echo $tab_driver_vehicle_info[0]['passenger']; ?>
+                                        <label for="" class="label-detail-title"><?php echo $number_of_passenger; ?> :</label> <?php echo $tab_driver_vehicle_info[0]['passenger']; ?>
                                     </div>
                                     <div class="col-md-12">
-                                        <a href="query/action.php?id_conducteur_activer=<?php echo $_GET['id_conducteur']; ?>" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> Enable account <i class="fa fa-check"></i> </a>
+                                        <a href="query/action.php?id_conducteur_activer=<?php echo $_GET['id_conducteur']; ?>" class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Activate"> <?php echo $enable_account; ?> <i class="fa fa-check"></i> </a>
                                     </div>
                                 </div>
                             </div>

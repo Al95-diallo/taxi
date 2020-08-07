@@ -2,6 +2,24 @@
             Téléphone: +226 63 86 22 46 / 73 35 41 41
                 Email: issoufwoumtana@gmail.com -->
 <?php
+    if(isset($_COOKIE['lang'])) {
+        switch($_COOKIE['lang']){
+            case 'bn' : include("lang/bn.php"); break;
+            case 'cn' : include("lang/cn.php"); break;
+            case 'de' : include("lang/de.php"); break;
+            case 'en' : include("lang/en.php"); break;
+            case 'esp' : include("lang/esp.php"); break;
+            case 'fr' : include("lang/fr.php"); break;
+            case 'in' : include("lang/in.php"); break;
+            case 'jp' : include("lang/jp.php"); break;
+            case 'ko' : include("lang/ko.php"); break;
+            case 'pt' : include("lang/pt.php"); break;
+            case 'ru' : include("lang/ru.php"); break;
+            default : include("lang/sa.php"); break;
+        }
+    }else{
+        include("lang/en.php");
+    }
     include("query/fonction.php");
     include("dico.php");
     $tab_infos_user[] = array();
@@ -87,13 +105,13 @@
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-themecolor">User</h3>
+                    <h3 class="text-themecolor"><?php echo $user; ?></h3>
                 </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                        <li class="breadcrumb-item">Administration tools</li>
-                        <li class="breadcrumb-item active">User</li>
+                        <li class="breadcrumb-item"><a href="index.php"><?php echo $home; ?></a></li>
+                        <li class="breadcrumb-item"><?php echo $admin_tools; ?></li>
+                        <li class="breadcrumb-item active"><?php echo $user; ?></li>
                     </ol>
                 </div>
                 <div>
@@ -114,14 +132,14 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Users list</h4>
+                                <h4 class="card-title"><?php echo $users_list; ?></h4>
                                 <!-- <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> -->
-                                <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#add-user"><i class="fa fa-plus m-r-10"></i>Add</button>
+                                <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#add-user"><i class="fa fa-plus m-r-10"></i><?php echo $add; ?></button>
                                 <div id="add-user" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content bg-gris">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="myModalLabel">Add a user</h4>
+                                                <h4 class="modal-title" id="myModalLabel"><?php echo $add_a_user; ?></h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                             </div>
                                             <form class="form-horizontal " action="query/action.php" method="post">
@@ -130,7 +148,7 @@
                                                         <div class="row">
                                                             <div class="col-md-6 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">ID</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $ID; ?></label>
                                                                     <?php $tab_user_last[] = array();
                                                                     $tab_user_last = getLastUser();
                                                                     if(count($tab_user_last) == 0){
@@ -146,7 +164,7 @@
                                                                         $tab_categorie_user[] = array();
                                                                         $tab_categorie_user = getCategorieUser();
                                                                     ?>
-                                                                    <label class="mr-sm-2" for="designation">User category</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $user_cat; ?></label>
                                                                     <select class="form-control " id="exampleFormControlSelect1" name="categorie_user" required>
                                                                         <?php
                                                                             for($i=0; $i<count($tab_categorie_user); $i++){
@@ -161,7 +179,7 @@
                                                             </div> 
                                                             <div class="col-md-6 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Last and first name</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $last_and_first_name; ?></label>
                                                                     <input type="text" class="form-control " placeholder="" name="nom_prenom" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -170,7 +188,7 @@
                                                             </div>
                                                             <div class="col-md-6 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Phone</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $phone; ?></label>
                                                                     <input type="text" class="form-control " placeholder="" name="telephone" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -179,7 +197,7 @@
                                                             </div>
                                                             <div class="col-md-6 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Email</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $email; ?></label>
                                                                     <input type="email" class="form-control " placeholder="" name="email" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -188,7 +206,7 @@
                                                             </div>
                                                             <div class="col-md-6 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">¨Password</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $password; ?></label>
                                                                     <input type="password" class="form-control " placeholder="" name="mdp" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -197,7 +215,7 @@
                                                             </div>
                                                             <div class="col-md-6 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Confirm password</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $confirm_pwd; ?></label>
                                                                     <input type="password" class="form-control " placeholder="" name="mdp_conf" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -206,7 +224,7 @@
                                                             </div>
                                                             <div class="col-md-6 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Status</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $status; ?></label>
                                                                     <select class="form-control " id="exampleFormControlSelect1" name="statut" required>
                                                                         <option value="yes">Yes</option>
                                                                         <option value="no">No</option>
@@ -220,8 +238,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-dark waves-effect">Save</button>
-                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-dark waves-effect"><?php echo $save; ?></button>
+                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><?php echo $cancel; ?></button>
                                                 </div>
                                             </form>
                                         </div>
@@ -233,7 +251,7 @@
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content bg-gris">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="myModalLabel">Edit a user</h4>
+                                                <h4 class="modal-title" id="myModalLabel"><?php echo $edit_a_user; ?></h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                             </div>
                                             <form class="form-horizontal " action="query/action.php" method="post">
@@ -247,7 +265,7 @@
                                                                         $tab_categorie_user[] = array();
                                                                         $tab_categorie_user = getCategorieUser();
                                                                     ?>
-                                                                    <label class="mr-sm-2" for="designation">User category</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $user_cat; ?></label>
                                                                     <select class="form-control " id="categorie_user_mod" name="categorie_user_mod" required>
                                                                         <?php
                                                                             for($i=0; $i<count($tab_categorie_user); $i++){
@@ -262,7 +280,7 @@
                                                             </div> 
                                                             <div class="col-md-6 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Last and first name</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $last_and_first_name; ?></label>
                                                                     <input type="text" class="form-control " placeholder="" name="nom_prenom_mod" id="nom_prenom_mod" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -271,7 +289,7 @@
                                                             </div>
                                                             <div class="col-md-6 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Phone</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $phone; ?></label>
                                                                     <input type="text" class="form-control " placeholder="" name="telephone_mod" id="telephone_mod" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -280,7 +298,7 @@
                                                             </div>
                                                             <div class="col-md-6 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Email</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $email; ?></label>
                                                                     <input type="email" class="form-control " placeholder="" name="email_mod" id="email_mod" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -307,7 +325,7 @@
                                                             </div> -->
                                                             <div class="col-md-6 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Status</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $status; ?></label>
                                                                     <select class="form-control " id="statut_mod" name="statut_mod" required>
                                                                         <option value="yes">Yes</option>
                                                                         <option value="no">No</option>
@@ -321,8 +339,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-dark waves-effect">Save</button>
-                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-dark waves-effect"><?php echo $save; ?></button>
+                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><?php echo $cancel; ?></button>
                                                 </div>
                                             </form>
                                         </div>
@@ -339,15 +357,15 @@
                                         <thead>
                                             <tr>
                                                 <th>N°</th>
-                                                <th>Category</th>
-                                                <th>Last and first name</th>
-                                                <th>Phone</th>
-                                                <th>Login</th>
+                                                <th><?php echo $category; ?></th>
+                                                <th><?php echo $last_and_first_name; ?></th>
+                                                <th><?php echo $phone; ?></th>
+                                                <th><?php echo $login; ?></th>
                                                 <!-- <th>Mot de passe</th> -->
-                                                <th>Status</th>
-                                                <th>Created</th>
-                                                <th>Modified</th>
-                                                <th>Actions</th>
+                                                <th><?php echo $status; ?></th>
+                                                <th><?php echo $created; ?></th>
+                                                <th><?php echo $modified; ?></th>
+                                                <th><?php echo $actions; ?></th>
                                             </tr>
                                         </thead>
                                         <tbody>

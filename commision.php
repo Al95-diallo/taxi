@@ -2,7 +2,25 @@
 <!-- Nom &amp; Prénom: WOUMTANA P. Youssouf
             Téléphone: +226 63 86 22 46 / 73 35 41 41
                 Email: issoufwoumtana@gmail.com -->
-                <?php
+<?php
+    if(isset($_COOKIE['lang'])) {
+        switch($_COOKIE['lang']){
+            case 'bn' : include("lang/bn.php"); break;
+            case 'cn' : include("lang/cn.php"); break;
+            case 'de' : include("lang/de.php"); break;
+            case 'en' : include("lang/en.php"); break;
+            case 'esp' : include("lang/esp.php"); break;
+            case 'fr' : include("lang/fr.php"); break;
+            case 'in' : include("lang/in.php"); break;
+            case 'jp' : include("lang/jp.php"); break;
+            case 'ko' : include("lang/ko.php"); break;
+            case 'pt' : include("lang/pt.php"); break;
+            case 'ru' : include("lang/ru.php"); break;
+            default : include("lang/sa.php"); break;
+        }
+    }else{
+        include("lang/en.php");
+    }
     include("query/fonction.php");
     include("dico.php");
     $tab_infos_user[] = array();
@@ -88,13 +106,13 @@
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-themecolor">Commission</h3>
+                    <h3 class="text-themecolor"><?php echo $commission; ?></h3>
                 </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                        <li class="breadcrumb-item">Codification</li>
-                        <li class="breadcrumb-item active">Commission</li>
+                        <li class="breadcrumb-item"><a href="index.php"><?php echo $home; ?></a></li>
+                        <li class="breadcrumb-item"><?php echo $codification; ?></li>
+                        <li class="breadcrumb-item active"><?php echo $commission; ?></li>
                     </ol>
                 </div>
                 <div>
@@ -115,21 +133,21 @@
                     <div class="col-md-12">
                         <div class="alert alert-info">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-                            <h3 class="text-info"><i class="fa fa-exclamation-circle"></i> Information</h3> 
-                            Activate both types of commission if you wish to make fixed commission + percentage commission
+                            <h3 class="text-info"><i class="fa fa-exclamation-circle"></i> <?php echo $information; ?></h3> 
+                            <?php echo $info_msg; ?>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Percentage commission</h4>
+                                <h4 class="card-title"><?php echo $percentage_commission; ?></h4>
                                 <!-- <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> -->
                                 <!-- <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#add-commission-perc"><i class="fa fa-plus m-r-10"></i>Add</button> -->
                                 <div id="add-commission-perc" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content bg-gris">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="myModalLabel">Add a commission</h4>
+                                                <h4 class="modal-title" id="myModalLabel"><?php echo $add_a_commission; ?></h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                             </div>
                                             <form class="form-horizontal " action="query/action.php" method="post">
@@ -138,7 +156,7 @@
                                                         <div class="row">
                                                             <div class="col-md-4 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Title</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $title; ?></label>
                                                                     <input type="text" class="form-control " placeholder="" name="libelle_commission_perc" id="libelle_commission_perc" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -147,7 +165,7 @@
                                                             </div>
                                                             <div class="col-md-4 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Value</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $value; ?></label>
                                                                     <input type="number" step="0.01" value="0.01" min="0.01" max="0.99" class="form-control " placeholder="" name="value_commission_perc" id="value_commission_perc" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -156,7 +174,7 @@
                                                             </div>
                                                             <div class="col-md-4 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Type</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $type; ?></label>
                                                                     <select name="type_commission_perc" id="type_commission_perc"class="form-control" required>
                                                                         <option value="Percentage" selected>Percentage</option>
                                                                         <!-- <option value="Fixed">Fixed</option> -->
@@ -167,8 +185,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-dark waves-effect">Save</button>
-                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-dark waves-effect"><?php echo $save; ?></button>
+                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><?php echo $cancel; ?></button>
                                                 </div>
                                             </form>
                                         </div>
@@ -180,7 +198,7 @@
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content bg-gris">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="myModalLabel">Modify a commision</h4>
+                                                <h4 class="modal-title" id="myModalLabel"><?php echo $modify_a_commision; ?></h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                             </div>
                                             <form class="form-horizontal " action="query/action.php" method="post">
@@ -190,7 +208,7 @@
                                                             <input type="hidden" name="id_commission_mod_perc" id="id_commission_mod_perc" value="<?php echo $id_user; ?>">
                                                             <div class="col-md-4 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Title</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $title; ?></label>
                                                                     <input type="text" class="form-control " placeholder="" name="libelle_commission_mod_perc" id="libelle_commission_mod_perc" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -199,7 +217,7 @@
                                                             </div>
                                                             <div class="col-md-4 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Value</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $value; ?>Value</label>
                                                                     <input type="number" class="form-control" step="0.01" value="0.01" min="0.01" max="0.99" placeholder="" name="value_commission_mod_perc" id="value_commission_mod_perc" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -208,7 +226,7 @@
                                                             </div>
                                                             <div class="col-md-4 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Type</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $type; ?></label>
                                                                     <select name="type_commission_mod_perc" id="type_commission_mod_perc"class="form-control" required>
                                                                         <option value="Percentage" selected>Percentage</option>
                                                                         <!-- <option value="Fixed">Fixed</option> -->
@@ -219,8 +237,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-dark waves-effect">Save</button>
-                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-dark waves-effect"><?php echo $save; ?></button>
+                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><?php echo $cancel; ?></button>
                                                 </div>
                                             </form>
                                         </div>
@@ -237,13 +255,13 @@
                                         <thead>
                                             <tr>
                                                 <th>N°</th>
-                                                <th>Name</th>
-                                                <th>Value</th>
-                                                <th>Type</th>
-                                                <th>Status</th>
-                                                <th>Created</th>
-                                                <th>Modify</th>
-                                                <th>Actions</th>
+                                                <th><?php echo $name; ?></th>
+                                                <th><?php echo $value; ?></th>
+                                                <th><?php echo $type; ?></th>
+                                                <th><?php echo $status; ?></th>
+                                                <th><?php echo $created; ?></th>
+                                                <th><?php echo $modified; ?></th>
+                                                <th><?php echo $actions; ?></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -278,14 +296,14 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Fixed commission</h4>
+                                <h4 class="card-title"><?php echo $fixed_commission; ?></h4>
                                 <!-- <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> -->
                                 <!-- <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#add-commission"><i class="fa fa-plus m-r-10"></i>Add</button> -->
                                 <div id="add-commission" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content bg-gris">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="myModalLabel">Add a commission</h4>
+                                                <h4 class="modal-title" id="myModalLabel"><?php echo $add_a_commission; ?></h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                             </div>
                                             <form class="form-horizontal " action="query/action.php" method="post">
@@ -294,7 +312,7 @@
                                                         <div class="row">
                                                             <div class="col-md-4 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Title</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $title; ?></label>
                                                                     <input type="text" class="form-control " placeholder="" name="libelle_commission" id="libelle_commission" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -303,7 +321,7 @@
                                                             </div>
                                                             <div class="col-md-4 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Value</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $value; ?></label>
                                                                     <input type="number" class="form-control " placeholder="" min="1" name="value_commission" id="value_commission" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -312,7 +330,7 @@
                                                             </div>
                                                             <div class="col-md-4 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Type</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $type; ?></label>
                                                                     <select name="type_commission" id="type_commission"class="form-control" required>
                                                                         <!-- <option value="Percentage" selected>Percentage</option> -->
                                                                         <option value="Fixed">Fixed</option>
@@ -323,8 +341,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-dark waves-effect">Save</button>
-                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-dark waves-effect"><?php echo $save; ?></button>
+                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><?php echo $cancel; ?></button>
                                                 </div>
                                             </form>
                                         </div>
@@ -336,7 +354,7 @@
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content bg-gris">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="myModalLabel">Modify a commision</h4>
+                                                <h4 class="modal-title" id="myModalLabel"><?php echo $modify_a_commision; ?></h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                             </div>
                                             <form class="form-horizontal " action="query/action.php" method="post">
@@ -346,7 +364,7 @@
                                                             <input type="hidden" name="id_commission_mod" id="id_commission_mod" value="<?php echo $id_user; ?>">
                                                             <div class="col-md-4 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Title</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $title; ?></label>
                                                                     <input type="text" class="form-control " placeholder="" name="libelle_commission_mod" id="libelle_commission_mod" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -355,7 +373,7 @@
                                                             </div>
                                                             <div class="col-md-4 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Value</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $value; ?></label>
                                                                     <input type="number" class="form-control" placeholder="" min="1" name="value_commission_mod" id="value_commission_mod" required> 
                                                                     <div class="invalid-feedback">
                                                                         Désolé, entrez l'intitulé de la catégorie de devis
@@ -364,7 +382,7 @@
                                                             </div>
                                                             <div class="col-md-4 m-b-0">
                                                                 <div class="form-group mb-3">
-                                                                    <label class="mr-sm-2" for="designation">Type</label>
+                                                                    <label class="mr-sm-2" for="designation"><?php echo $type; ?></label>
                                                                     <select name="type_commission_mod" id="type_commission_mod"class="form-control" required>
                                                                         <!-- <option value="Percentage" selected>Percentage</option> -->
                                                                         <option value="Fixed">Fixed</option>
@@ -375,8 +393,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-dark waves-effect">Save</button>
-                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-dark waves-effect"><?php echo $save; ?></button>
+                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><?php echo $cancel; ?></button>
                                                 </div>
                                             </form>
                                         </div>
@@ -393,13 +411,13 @@
                                         <thead>
                                             <tr>
                                                 <th>N°</th>
-                                                <th>Name</th>
-                                                <th>Value</th>
-                                                <th>Type</th>
-                                                <th>Status</th>
-                                                <th>Created</th>
-                                                <th>Modify</th>
-                                                <th>Actions</th>
+                                                <th><?php echo $name; ?></th>
+                                                <th><?php echo $value; ?></th>
+                                                <th><?php echo $type; ?></th>
+                                                <th><?php echo $status; ?></th>
+                                                <th><?php echo $created; ?></th>
+                                                <th><?php echo $modified; ?></th>
+                                                <th><?php echo $actions; ?></th>
                                             </tr>
                                         </thead>
                                         <tbody>

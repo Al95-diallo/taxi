@@ -2,6 +2,24 @@
             Téléphone: +226 63 86 22 46 / 73 35 41 41
                 Email: issoufwoumtana@gmail.com -->
 <?php
+    if(isset($_COOKIE['lang'])) {
+        switch($_COOKIE['lang']){
+            case 'bn' : include("lang/bn.php"); break;
+            case 'cn' : include("lang/cn.php"); break;
+            case 'de' : include("lang/de.php"); break;
+            case 'en' : include("lang/en.php"); break;
+            case 'esp' : include("lang/esp.php"); break;
+            case 'fr' : include("lang/fr.php"); break;
+            case 'in' : include("lang/in.php"); break;
+            case 'jp' : include("lang/jp.php"); break;
+            case 'ko' : include("lang/ko.php"); break;
+            case 'pt' : include("lang/pt.php"); break;
+            case 'ru' : include("lang/ru.php"); break;
+            default : include("lang/sa.php"); break;
+        }
+    }else{
+        include("lang/en.php");
+    }
     include("query/fonction.php");
     include("dico.php");
     if(!isset($_SESSION['user_info']) && count($_SESSION['user_info']) == 0)
@@ -123,12 +141,12 @@
             ?>
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-themecolor">Earning: <?php if($tab_requete_completed[0]['earning']!=''){echo $tab_currency[0]['symbole'].' '.$tab_requete_completed[0]['earning'];}else{ echo $tab_currency[0]['symbole'].' 0';}  ?></h3>
+                    <h3 class="text-themecolor"><?php echo $earning ?>: <?php if($tab_requete_completed[0]['earning']!=''){echo $tab_currency[0]['symbole'].' '.$tab_requete_completed[0]['earning'];}else{ echo $tab_currency[0]['symbole'].' 0';}  ?></h3>
                 </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)"><?php echo $home ?></a></li>
+                        <li class="breadcrumb-item active"><?php echo $dashboard ?></li>
                     </ol>
                 </div>
                 <div>
@@ -151,7 +169,7 @@
                                     <h3 class="text-white box m-b-0"><i class="ti-user"></i></h3></div>
                                 <div class="align-self-center m-l-20">
                                     <h3 class="m-b-0 text-info"><?php echo count($tab_driver) ?></h3>
-                                    <h5 class="text-muted m-b-0">Driver</h5></div>
+                                    <h5 class="text-muted m-b-0"><?php echo $driver ?></h5></div>
                             </div>
                         </div>
                     </div>
@@ -164,7 +182,7 @@
                                     <h3 class="text-white box m-b-0"><i class="ti-user"></i></h3></div>
                                 <div class="align-self-center m-l-20">
                                     <h3 class="m-b-0 text-info"><?php echo count($tab_customer) ?></h3>
-                                    <h5 class="text-muted m-b-0">Customer</h5></div>
+                                    <h5 class="text-muted m-b-0"><?php echo $customer ?></h5></div>
                             </div>
                         </div>
                     </div>
@@ -178,7 +196,7 @@
                                 </div>
                                 <div class="align-self-center m-l-20">
                                     <h3 class="m-b-0 text-info"><?php echo $tab_currency[0]['symbole'].' '.$tab_requete[0]['montant'] ?></h3>
-                                    <h5 class="text-muted m-b-0">All ride</h5>
+                                    <h5 class="text-muted m-b-0"><?php echo $customer ?>All ride</h5>
                                 </div>
                             </div>
                         </div>
@@ -192,7 +210,7 @@
                                     <h3 class="text-white box m-b-0"><i class="ti-wallet"></i></h3></div>
                                 <div class="align-self-center m-l-20">
                                 <h3 class="m-b-0 text-info"><?php if($tab_requete_new[0]['montant']!=''){echo $tab_currency[0]['symbole'].' '.$tab_requete_new[0]['montant'];}else{ echo $tab_currency[0]['symbole'].' 0';}  ?></h3>
-                                    <h5 class="text-muted m-b-0">New ride</h5></div>
+                                    <h5 class="text-muted m-b-0"><?php echo $new_ride ?></h5></div>
                             </div>
                         </div>
                     </div>
@@ -207,7 +225,7 @@
                                     <h3 class="text-white box m-b-0"><i class="ti-wallet"></i></h3></div>
                                 <div class="align-self-center m-l-20">
                                 <h3 class="m-b-0 text-info"><?php if($tab_requete_confirmed[0]['montant']!=''){echo $tab_currency[0]['symbole'].' '.$tab_requete_confirmed[0]['montant'];}else{ echo $tab_currency[0]['symbole'].' 0';}  ?></h3>
-                                    <h5 class="text-muted m-b-0">Confirmed ride</h5></div>
+                                    <h5 class="text-muted m-b-0"><?php echo $confirmed_ride ?></h5></div>
                             </div>
                         </div>
                     </div>
@@ -220,7 +238,7 @@
                                     <h3 class="text-white box m-b-0"><i class="ti-wallet"></i></h3></div>
                                 <div class="align-self-center m-l-20">
                                 <h3 class="m-b-0 text-info"><?php if($tab_requete_onride[0]['montant']!=''){echo $tab_currency[0]['symbole'].' '.$tab_requete_onride[0]['montant'];}else{ echo $tab_currency[0]['symbole'].' 0';}  ?></h3>
-                                    <h5 class="text-muted m-b-0">On ride</h5></div>
+                                    <h5 class="text-muted m-b-0"><?php echo $on_ride ?></h5></div>
                             </div>
                         </div>
                     </div>
@@ -233,7 +251,7 @@
                                     <h3 class="text-white box m-b-0"><i class="ti-wallet"></i></h3></div>
                                 <div class="align-self-center m-l-20">
                                 <h3 class="m-b-0 text-info"><?php if($tab_requete_completed[0]['montant']!=''){echo $tab_currency[0]['symbole'].' '.$tab_requete_completed[0]['montant'];}else{ echo $tab_currency[0]['symbole'].' 0';}  ?></h3>
-                                    <h5 class="text-muted m-b-0">Completed ride</h5></div>
+                                    <h5 class="text-muted m-b-0"><?php echo $completed_ride ?></h5></div>
                             </div>
                         </div>
                     </div>
@@ -246,7 +264,7 @@
                                     <h3 class="text-white box m-b-0"><i class="ti-wallet"></i></h3></div>
                                 <div class="align-self-center m-l-20">
                                 <h3 class="m-b-0 text-info"><?php if($tab_requete_canceled[0]['montant']!=''){echo $tab_currency[0]['symbole'].' '.$tab_requete_canceled[0]['montant'];}else{ echo $tab_currency[0]['symbole'].' 0';}  ?></h3>
-                                    <h5 class="text-muted m-b-0">Canceled ride</h5></div>
+                                    <h5 class="text-muted m-b-0"><?php echo $canceled_ride ?></h5></div>
                             </div>
                         </div>
                     </div>
@@ -262,7 +280,7 @@
                                     <h3 class="text-white box m-b-0"><i class="ti-wallet"></i></h3></div>
                                 <div class="align-self-center m-l-20">
                                 <h3 class="m-b-0 text-info"><?php if($tab_requete_confirmed[0]['earning']!=''){echo $tab_currency[0]['symbole'].' '.$tab_requete_confirmed[0]['earning'];}else{ echo $tab_currency[0]['symbole'].' 0';}  ?></h3>
-                                    <h5 class="text-muted m-b-0">Confirmed ride</h5></div>
+                                    <h5 class="text-muted m-b-0"><?php echo $confirmed_ride ?></h5></div>
                             </div>
                         </div>
                     </div>
@@ -275,7 +293,7 @@
                                     <h3 class="text-white box m-b-0"><i class="ti-wallet"></i></h3></div>
                                 <div class="align-self-center m-l-20">
                                 <h3 class="m-b-0 text-info"><?php if($tab_requete_onride[0]['earning']!=''){echo $tab_currency[0]['symbole'].' '.$tab_requete_onride[0]['earning'];}else{ echo $tab_currency[0]['symbole'].' 0';}  ?></h3>
-                                    <h5 class="text-muted m-b-0">On ride</h5></div>
+                                    <h5 class="text-muted m-b-0"><?php echo $on_ride ?></h5></div>
                             </div>
                         </div>
                     </div>
@@ -288,7 +306,7 @@
                                     <h3 class="text-white box m-b-0"><i class="ti-wallet"></i></h3></div>
                                 <div class="align-self-center m-l-20">
                                 <h3 class="m-b-0 text-info"><?php if($tab_requete_completed[0]['earning']!=''){echo $tab_currency[0]['symbole'].' '.$tab_requete_completed[0]['earning'];}else{ echo $tab_currency[0]['symbole'].' 0';}  ?></h3>
-                                    <h5 class="text-muted m-b-0">Completed ride</h5></div>
+                                    <h5 class="text-muted m-b-0"><?php echo $completed_ride ?></h5></div>
                             </div>
                         </div>
                     </div>
@@ -301,7 +319,7 @@
                                     <h3 class="text-white box m-b-0"><i class="ti-wallet"></i></h3></div>
                                 <div class="align-self-center m-l-20">
                                 <h3 class="m-b-0 text-info"><?php if($tab_requete_canceled[0]['earning']!=''){echo $tab_currency[0]['symbole'].' '.$tab_requete_canceled[0]['earning'];}else{ echo $tab_currency[0]['symbole'].' 0';}  ?></h3>
-                                    <h5 class="text-muted m-b-0">Canceled ride</h5></div>
+                                    <h5 class="text-muted m-b-0"><?php echo $canceled_ride ?></h5></div>
                             </div>
                         </div>
                     </div>
@@ -316,7 +334,7 @@
                                     <h3 class="text-white box m-b-0"><i class="ti-wallet"></i></h3></div>
                                 <div class="align-self-center m-l-20">
                                 <h3 class="m-b-0 text-info"><?php if($tab_requete_sales_today[0]['nb_sales']!=''){echo $tab_requete_sales_today[0]['nb_sales'].' sales';}else{ echo '0 sales';}  ?></h3>
-                                    <h5 class="text-muted m-b-0">Driver sale today</h5></div>
+                                    <h5 class="text-muted m-b-0"><?php echo $driver_sale_today ?></h5></div>
                             </div>
                         </div>
                     </div>
@@ -329,7 +347,7 @@
                                     <h3 class="text-white box m-b-0"><i class="ti-wallet"></i></h3></div>
                                 <div class="align-self-center m-l-20">
                                 <h3 class="m-b-0 text-info"><?php if($tab_requete_earn_today[0]['earning']!=''){echo $tab_currency[0]['symbole'].' '.$tab_requete_earn_today[0]['earning'];}else{ echo $tab_currency[0]['symbole'].' 0';}  ?></h3>
-                                    <h5 class="text-muted m-b-0">Commission for the day</h5></div>
+                                    <h5 class="text-muted m-b-0"><?php echo $commission_for_the_day ?></h5></div>
                             </div>
                         </div>
                     </div>
@@ -342,7 +360,7 @@
                                     <h3 class="text-white box m-b-0"><i class="ti-wallet"></i></h3></div>
                                 <div class="align-self-center m-l-20">
                                 <h3 class="m-b-0 text-info"><?php if($tab_requete_earn_week[0]['earning']!=''){echo $tab_currency[0]['symbole'].' '.$tab_requete_earn_week[0]['earning'];}else{ echo $tab_currency[0]['symbole'].' 0';}  ?></h3>
-                                    <h5 class="text-muted m-b-0">Commission for the week</h5></div>
+                                    <h5 class="text-muted m-b-0"><?php echo $commission_for_the_week ?></h5></div>
                             </div>
                         </div>
                     </div>
@@ -355,7 +373,7 @@
                                     <h3 class="text-white box m-b-0"><i class="ti-wallet"></i></h3></div>
                                 <div class="align-self-center m-l-20">
                                 <h3 class="m-b-0 text-info"><?php if($tab_requete_earn_month[0]['earning']!=''){echo $tab_currency[0]['symbole'].' '.$tab_requete_earn_month[0]['earning'];}else{ echo $tab_currency[0]['symbole'].' 0';}  ?></h3>
-                                    <h5 class="text-muted m-b-0">Commission for the month</h5></div>
+                                    <h5 class="text-muted m-b-0"><?php echo $commission_for_the_month ?></h5></div>
                             </div>
                         </div>
                     </div>
@@ -366,7 +384,7 @@
                     <div class="col-lg-12 col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title"><i class="mdi mdi-account m-r-5 color-success"></i>Driver activation request</h4>
+                                <h4 class="card-title"><i class="mdi mdi-account m-r-5 color-success"></i><?php echo $driver_activation_request ?></h4>
                                 <div class="table-responsive m-t-10" style="height:160px;">
                                     <?php
                                         $tab_conducteur[] = array(); 
@@ -376,15 +394,15 @@
                                         <thead>
                                             <tr>
                                                 <th width="5%">N°</th>
-                                                <th width="10%">Photo</th>
-                                                <th width="20%">Last name</th>
-                                                <th width="20%">First name</th>
-                                                <th width="10%">Phone</th>
-                                                <th width="10%">National card number</th>
-                                                <th width="5%">Status</th>
-                                                <th width="5%">Created</th>
-                                                <th width="5%">Modify</th>
-                                                <th width="10%">Actions</th>
+                                                <th width="10%"><?php echo $photo ?></th>
+                                                <th width="20%"><?php echo $last_name ?></th>
+                                                <th width="20%"><?php echo $first_name ?></th>
+                                                <th width="10%"><?php echo $phone ?></th>
+                                                <th width="10%"><?php echo $national_card_number ?></th>
+                                                <th width="5%"><?php echo $status ?></th>
+                                                <th width="5%"><?php echo $created ?></th>
+                                                <th width="5%"><?php echo $modified ?></th>
+                                                <th width="10%"><?php echo $actions ?></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -439,8 +457,9 @@
                                 <?php
                                     $tab_currency[] = array(); 
                                     $tab_currency = getEnabledCurrency();
+                                    // print_r(getEarningStatsDashboard(2020));
                                 ?>
-                                <h4 class="card-title">Earning stats (<?php echo $tab_currency[0]['symbole']; ?>)</h4>
+                                <h4 class="card-title"><?php echo $earning_stats ?> (<?php echo $tab_currency[0]['symbole']; ?>)</h4>
                                 <div id="chart">
                                     <canvas id="chart2" height="150"></canvas>
                                 </div>
@@ -452,14 +471,14 @@
                     <div class="col-lg-3 col-lg-5">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title"><i class="mdi mdi-briefcase m-r-5 color-success"></i>Taxi booking</h4>
-                                <h6 class="card-subtitle">Coordinate all actors involved in the Taxi services.</h6>
+                                <h4 class="card-title"><i class="mdi mdi-briefcase m-r-5 color-success"></i><?php echo $taxi_booking ?></h4>
+                                <h6 class="card-subtitle"><?php echo $coordinate_all_actors_involved_in_the_taxi_services ?></h6>
                                 <div class="button-group">
                                     <!-- <a href="requete.php" class="btn waves-effect waves-light btn-lg btn-success">All </a> -->
-                                    <a href="requete-new.php" class="btn waves-effect waves-light btn-lg btn-success">New</a>
-                                    <a href="requete-confirmed.php" class="btn waves-effect waves-light btn-lg btn-success">Confirmed</a>
-                                    <a href="requete-onride.php" class="btn waves-effect waves-light btn-lg btn-success">On Ride</a>
-                                    <a href="requete-completed.php" class="btn waves-effect waves-light btn-lg btn-success">Completed</a>
+                                    <a href="requete-new.php" class="btn waves-effect waves-light btn-lg btn-success"><?php echo $new ?></a>
+                                    <a href="requete-confirmed.php" class="btn waves-effect waves-light btn-lg btn-success"><?php echo $confirmed ?></a>
+                                    <a href="requete-onride.php" class="btn waves-effect waves-light btn-lg btn-success"><?php echo $on_ride ?></a>
+                                    <a href="requete-completed.php" class="btn waves-effect waves-light btn-lg btn-success"><?php echo $completed ?></a>
                                 </div>
                             </div>
                         </div>
@@ -467,10 +486,10 @@
                     <div class="col-lg-3 col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title"><i class="mdi mdi-settings m-r-5 color-info"></i>Administration tools</h4>
-                                <h6 class="card-subtitle">User and User Category Management Tool.</h6>
+                                <h4 class="card-title"><i class="mdi mdi-settings m-r-5 color-info"></i><?php echo $admin_tools ?></h4>
+                                <h6 class="card-subtitle"><?php echo $user_and_user_category_management_tool ?></h6>
                                 <div class="button-group">
-                                    <a href="categorie-user.php" class="btn waves-effect waves-light btn-lg btn-info">Categorie of user</a>
+                                    <a href="categorie-user.php" class="btn waves-effect waves-light btn-lg btn-info"><?php echo $user_cat ?></a>
                                     <!-- <a href="user.php" class="btn waves-effect waves-light btn-lg btn-info">User admin.</a> -->
                                 </div>
                             </div>
@@ -479,11 +498,11 @@
                     <div class="col-lg-3 col-lg-3">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title"><i class="mdi mdi-account m-r-5 color-warning"></i>User APP.</h4>
-                                <h6 class="card-subtitle">Track the activities of users.</h6>
+                                <h4 class="card-title"><i class="mdi mdi-account m-r-5 color-warning"></i><?php echo $user_app ?></h4>
+                                <h6 class="card-subtitle"><?php echo $track_the_activities_of_users ?></h6>
                                 <div class="button-group">
-                                    <a href="list-user.php" class="btn waves-effect waves-light btn-lg btn-warning">User List </a>
-                                    <a href="conducteur.php" class="btn waves-effect waves-light btn-lg btn-warning">Driver List </a>
+                                    <a href="list-user.php" class="btn waves-effect waves-light btn-lg btn-warning"><?php echo $user_list ?> </a>
+                                    <a href="conducteur.php" class="btn waves-effect waves-light btn-lg btn-warning"><?php echo $driver_list ?> </a>
                                     <!-- <a href="suggestion.php" class="btn waves-effect waves-light btn-lg btn-warning">Suggestion</a>
                                     <a href="commentaire-avis.php" class="btn waves-effect waves-light btn-lg btn-warning">Commentaire & avis</a> -->
                                     <!-- <button type="button" class="btn waves-effect waves-light btn-lg btn-info">Type d'alerte</button> -->
@@ -507,7 +526,7 @@
                 <div class="row m-t-0">
                     <div class="col-md-12">
                 
-                        <h3>Live Tracking</h3> 
+                        <h3><?php echo $live_tracking ?></h3> 
                         <div id="map"></div> 
                         <script> 
                             // function initMap() { 
@@ -724,6 +743,7 @@
                 infoWindow.setContent(markerContent);
                 infoWindow.open(map, this);
             });
+            new google.maps.event.trigger( marker, 'click' );
         }
         function addYourLocationButton(map, marker) {
             var controlDiv = document.createElement('div');
